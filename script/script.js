@@ -49,6 +49,8 @@ const storeItemArr = [];
 const cartItemArr = [];
 
 /* Functions */
+
+// Called when the page loads
 function initialize() {
 	// Get current day / time
 	let currDayTime = new Date();
@@ -324,6 +326,74 @@ function initialize() {
 		FOCUSRITE_SCARLETT_2i2_Gen4,
 		car_trashcan
 	);
+
+	displayStoreItems();
+}
+
+// Display dynamically generated store items table
+function displayStoreItems() {
+	// Store Item Display Table
+	const inventoryDisplayTbl = document.getElementById('storeItemDisplay');
+
+	// Create Table Body Element
+	const tblBody = document.createElement('tbody');
+
+	// Generate Dynamic Table as much as the number of items
+	for (let i = 0; i < storeItemArr.length; i++) {
+		// currently selected item
+		let currItem = storeItemArr[i];
+
+		const row = document.createElement('tr');
+
+		for (let j = 0; j < 7; j++) {
+			// Create a <td> element and a text node, make the text node the contents of the <td>, and put the <td> at the end of the table row
+			const cell = document.createElement('td');
+			let cellText;
+			switch (j) {
+				case 0:
+					cellText = document.createTextNode(currItem.id);
+					cell.appendChild(cellText);
+					break;
+				case 1:
+					cellText = document.createTextNode(currItem.name);
+					cell.appendChild(cellText);
+					break;
+				case 2:
+					cellText = document.createTextNode('$' + currItem.priceCA.toFixed(2));
+					cell.appendChild(cellText);
+					break;
+				case 3:
+					cellText = document.createTextNode(currItem.quantityOnHand);
+					cell.appendChild(cellText);
+					break;
+				case 4:
+					cellText = document.createTextNode(currItem.maxPerCustomer);
+					cell.appendChild(cellText);
+					break;
+				case 5:
+					cellText = document.createTextNode(currItem.category);
+					cell.appendChild(cellText);
+					break;
+				case 6:
+					const img = document.createElement('img');
+					img.src = currItem.img; // Set the source of your image
+					img.alt = 'Item Image'; // Set alt text for accessibility
+					img.height = 60;
+					cell.appendChild(img);
+					break;
+				default:
+					cellText = document.createTextNode('');
+					cell.appendChild(cellText);
+					break;
+			}
+
+			row.appendChild(cell);
+		}
+		// add the row to the end of the table body
+		tblBody.appendChild(row);
+	}
+	// put the <tbody> in the <table>
+	inventoryDisplayTbl.appendChild(tblBody);
 }
 
 initialize();

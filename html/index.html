@@ -17,14 +17,27 @@
 			</select>
 		</span>
 		<br />
+		<br />
 		<fieldset>
 			<legend>Store Items</legend>
 			<select id="displayFilter">
 				<option>All</option>
 			</select>
 			<br />
-			<span><strong>| ID | Product Name | Price | Qty | Max | Category | Image |</strong></span>
-			<div id="inventoryOutput"></div>
+			<table id="storeItemDisplay">
+				<br />
+				<thead>
+					<tr>
+						<th>ID</th>
+						<th>Product Name</th>
+						<th>Price</th>
+						<th>Quantity on Hand</th>
+						<th>Max</th>
+						<th>Category</th>
+						<th>Image</th>
+					</tr>
+				</thead>
+			</table>
 		</fieldset>
 		<br />
 		<fieldset>
