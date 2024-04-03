@@ -83,7 +83,7 @@ function initialize() {
 		new Array(),
 		`- The Apple 20W USB’C Power Adapter offers fast charging at home, in the office, or on the go.\n- While the power adapter is compatible with any USB C-enabled device, Apple recommends pairing it with the iPad Pro and iPad Air for optimal charging performance.
     You can also pair it with iPhone 8 or later to take advantage of the fast-charging feature.\n- Works with iPhone, AirPods, iPad and Apple Watch.\n- USB-C wall charger only, charging cable sold separately.`,
-		'/img/storeItems/USB-C 20W Adapter.jpg'
+		'/img/storeItems/USB_C_20W_Adapter.jpg'
 	);
 
 	const the_VHC = new storeItem(
@@ -376,9 +376,22 @@ function displayStoreItems() {
 					break;
 				case 6:
 					const img = document.createElement('img');
-					img.src = currItem.img; // Set the source of your image
+					img.src = currItem.image; // Set the source of your image
 					img.alt = 'Item Image'; // Set alt text for accessibility
-					img.height = 60;
+					const originalWidth = img.naturalWidth;
+					const originalHeight = img.naturalHeight;
+					const ratio = originalWidth / originalHeight;
+
+					if (originalHeight > originalWidth) {
+						// If width is greater, set it to 150 and calculate the height
+						img.height = 150;
+						img.width = 150 * ratio;
+					} else {
+						// If width is greater, set it to 150 and calculate the height
+						img.width = 150;
+						img.height = 150 / ratio;
+					}
+
 					cell.appendChild(img);
 					break;
 				default:
