@@ -555,7 +555,7 @@ function displayCartItems() {
 						break;
 
 					case 2:
-						cellText = document.createTextNode(currItem.quantityOnHand);
+						cellText = document.createTextNode(currItem.quantity);
 						cell.appendChild(cellText);
 						break;
 
@@ -670,12 +670,11 @@ function addToCart() {
 			'The item ID is not valid. Please enter a valid item ID.';
 	} else {
 		document.getElementById('addIDValidationMessage').innerHTML = '';
-		let quantity = document.getElementById('addItemQty').value;
 		if (!cartItemArr.find((item) => item.id === selectedItem)) {
 			const newCartItem = new cartItem(
 				selectedStoreItemObject.id,
 				selectedStoreItemObject.priceCA,
-				quantity,
+				document.getElementById('addItemQty').value,
 				selectedStoreItemObject.shipping
 			);
 			cartItemArr.push(newCartItem);
