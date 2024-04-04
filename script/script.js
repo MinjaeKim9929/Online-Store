@@ -484,6 +484,7 @@ function displayCartItems() {
 	} else {
 		// Cart Item Display Div
 		const cartItemDisplayDiv = document.getElementById('cartItemDisplayDiv');
+		cartItemDisplayDiv.innerHTML = '';
 
 		// Create Table Elements
 		const cartItemDisplayTbl = document.createElement('table');
@@ -617,6 +618,30 @@ function changeFlag() {
 	}
 }
 
+function changeQtyDropdown(maxNumber) {
+	// Validate maxNumber
+	if (maxNumber > 1) {
+		// Get Dropdown Element
+		var dropDown = document.getElementById('itemNumDropdown');
+
+		// Empty Dropdown
+		dropDown.innerHTML = '';
+
+		// Add options to dropDown
+		for (var x = 1; x <= maxNumber; x++) {
+			var tempElement = document.createElement('option');
+			tempElement.innerHTML = x;
+			tempElement.value = x;
+			dropDown.appendChild(tempElement);
+		}
+
+		console.log('Dropdown updated!');
+	} // end if
+	else {
+		console.log('Dropdown not updated!');
+	}
+}
+
 function addToCart() {
 	const selectedItem = document.getElementById('addItemId').value;
 	let selectedStoreItemObject = storeItemArr.find((item) => item.id === selectedItem);
@@ -630,7 +655,7 @@ function addToCart() {
 			const newCartItem = new cartItem(
 				selectedStoreItemObject.id,
 				selectedStoreItemObject.priceCA,
-				selectedStoreItemObject.quantity,
+				quantity,
 				selectedStoreItemObject.shipping
 			);
 			cartItemArr.push(newCartItem);
