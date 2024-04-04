@@ -327,6 +327,7 @@ function initialize() {
 		car_trashcan
 	);
 
+	// Call the functions that display the store items array and cart items array
 	displayStoreItems();
 	displayCartItems();
 }
@@ -334,54 +335,67 @@ function initialize() {
 // Display dynamically generated store items table
 function displayStoreItems() {
 	const storeItemDisplayDiv = document.getElementById('storeItemDisplayDiv');
+	// Empty the store item display div
 	storeItemDisplayDiv.innerHTML = '';
 
-	// Store Item Display Table
+	// Create Store Item Display Table
 	const inventoryDisplayTbl = document.createElement('table');
-
+	// Create a table head which will contain store item properties
 	const tblHead = document.createElement('thead');
+	// Create a table row
 	const tr = document.createElement('tr');
 
+	// Create seven heading columns containing property names
 	for (let i = 0; i < 7; i++) {
+		// Create table header elements and append each of them to tr element
 		const th = document.createElement('th');
 		switch (i) {
+			// First column
 			case 0:
 				th.appendChild(document.createTextNode('ID'));
 				tr.appendChild(th);
 				break;
 
+			// Second column
 			case 1:
 				th.appendChild(document.createTextNode('Product Name'));
 				tr.appendChild(th);
 				break;
 
+			// Third column
 			case 2:
 				th.appendChild(document.createTextNode('Price'));
 				tr.appendChild(th);
 				break;
 
+			// Fourth column
 			case 3:
 				th.appendChild(document.createTextNode('Quantity on Hand'));
 				tr.appendChild(th);
 				break;
 
+			// Fifth column
 			case 4:
 				th.appendChild(document.createTextNode('Max'));
 				tr.appendChild(th);
 				break;
 
+			// Sixth column
 			case 5:
 				th.appendChild(document.createTextNode('Category'));
 				tr.appendChild(th);
 				break;
 
+			// Seventh column
 			default:
 				th.appendChild(document.createTextNode('Image'));
 				tr.appendChild(th);
 				break;
 		}
 	}
+	// Append tr element to thead element
 	tblHead.appendChild(tr);
+	// Append thead element to table element
 	inventoryDisplayTbl.appendChild(tblHead);
 
 	// Create Table Body Element
@@ -392,6 +406,7 @@ function displayStoreItems() {
 		// currently selected item
 		let currItem = storeItemArr[i];
 
+		// Create tr element
 		const row = document.createElement('tr');
 
 		for (let j = 0; j < 7; j++) {
@@ -399,63 +414,84 @@ function displayStoreItems() {
 			const cell = document.createElement('td');
 			let cellText;
 			switch (j) {
+				// First column
 				case 0:
 					cellText = document.createTextNode(currItem.id);
 					cell.appendChild(cellText);
 					break;
 
+				// Second column
 				case 1:
 					cellText = document.createTextNode(currItem.name);
 					cell.appendChild(cellText);
 					break;
 
+				// Third column
 				case 2:
+					// Currently selected currency
 					const currency = document.getElementById('currencySelector');
+					// Save the calculated price of the current currency
 					let currentPrice;
-
+					// if USD is selected
 					if (currency.value === 'USD') {
+						// Calculate and save the price in USD
 						currentPrice = currItem.priceCA * CADtoUSD;
 						cellText = document.createTextNode(`$${currentPrice.toFixed(2)} (USD)`);
-					} else if (currency.value === 'KRW') {
+					}
+					// if KRW is selected
+					else if (currency.value === 'KRW') {
+						// Calculate and save the price in KRW
 						currentPrice = currItem.priceCA * CADtoKRW;
+						// Express KRW in thousands
 						cellText = document.createTextNode(`₩${(Math.ceil(currentPrice / 100) * 100).toLocaleString()} (KRW)`);
-					} else {
+					}
+					// if CAD is selected
+					else {
 						currentPrice = currItem.priceCA;
 						cellText = document.createTextNode(`$${currentPrice.toFixed(2)}`);
 					}
 					cell.appendChild(cellText);
 					break;
 
+				// Fourth column
 				case 3:
 					cellText = document.createTextNode(currItem.quantityOnHand);
 					cell.appendChild(cellText);
 					break;
 
+				// Fifth column
 				case 4:
 					cellText = document.createTextNode(currItem.maxPerCustomer);
 					cell.appendChild(cellText);
 					break;
 
+				// Sixth column
 				case 5:
 					cellText = document.createTextNode(currItem.category);
 					cell.appendChild(cellText);
 					break;
 
+				// Seventh column
 				case 6:
+					// Create image element
 					const img = document.createElement('img');
 					img.src = currItem.image; // Set the source of your image
 					img.alt = 'Item Image'; // Set alt text for accessibility
 
+					// Save width of original image
 					const originalWidth = img.naturalWidth;
+					// Save height of original image
 					const originalHeight = img.naturalHeight;
+					// The ratio of width to height
 					const ratio = originalWidth / originalHeight;
 
+					// If width is greater, set it to 100 and calculate the height
 					if (originalHeight > originalWidth) {
-						// If width is greater, set it to 150 and calculate the height
 						img.height = 100;
 						img.width = 100 * ratio;
-					} else {
-						// If width is greater, set it to 150 and calculate the height
+					}
+					// If width is greater, set it to 100 and calculate the height
+					else {
 						img.width = 100;
 						img.height = 100 / ratio;
 					}
@@ -467,7 +503,7 @@ function displayStoreItems() {
 					cell.appendChild(cellText);
 					break;
 			}
-
+			// td element to tr
 			row.appendChild(cell);
 		}
 		// add the row to the end of the table body
@@ -478,12 +514,18 @@ function displayStoreItems() {
 	storeItemDisplayDiv.appendChild(inventoryDisplayTbl);
 }
 
+// Display dynamically generated cart items table
 function displayCartItems() {
+	// if cart item does not exist
 	if (cartItemArr.length === 0) {
+		// Output a message in cart item display div
 		document.getElementById('cartItemDisplayDiv').innerHTML = '<br>No Items in Cart. Add Items to Cart.';
-	} else {
+	}
+	// if cart item exists
+	else {
 		// Cart Item Display Div
 		const cartItemDisplayDiv = document.getElementById('cartItemDisplayDiv');
+		// Empty cart item display div
 		cartItemDisplayDiv.innerHTML = '';
 
 		// Create Table Elements
@@ -491,30 +533,36 @@ function displayCartItems() {
 		const tblHead = document.createElement('thead');
 		const tr = document.createElement('tr');
 
+		// Generate 4 heading columns
 		for (let i = 0; i < 4; i++) {
 			const th = document.createElement('th');
 			switch (i) {
+				// First column
 				case 0:
 					th.appendChild(document.createTextNode('ID'));
 					tr.appendChild(th);
 					break;
 
+				// Second column
 				case 1:
 					th.appendChild(document.createTextNode('Price'));
 					tr.appendChild(th);
 					break;
 
+				// Third column
 				case 2:
 					th.appendChild(document.createTextNode('Quantity'));
 					tr.appendChild(th);
 					break;
 
+				// Fourth column
 				default:
 					th.appendChild(document.createTextNode('Subtotal'));
 					tr.appendChild(th);
 					break;
 			}
 		}
+		// Add element to parent element of each
 		tblHead.appendChild(tr);
 		cartItemDisplayTbl.appendChild(tblHead);
 
@@ -528,41 +576,74 @@ function displayCartItems() {
 
 			const row = document.createElement('tr');
 
+			// Save the calculated price of the current currency
+			let currentPrice;
+
 			for (let j = 0; j < 4; j++) {
 				// Create a <td> element and a text node, make the text node the contents of the <td>, and put the <td> at the end of the table row
 				const cell = document.createElement('td');
+
+				// currently selected currency
+				const currency = document.getElementById('currencySelector');
+
 				let cellText;
+
 				switch (j) {
+					// First column
 					case 0:
 						cellText = document.createTextNode(currItem.id);
 						cell.appendChild(cellText);
 						break;
 
+					// Second column
 					case 1:
-						const currency = document.getElementById('currencySelector');
-						let currentPrice;
+						// if USD is selected
 						if (currency.value === 'USD') {
+							// Calculate and save the price in USD
 							currentPrice = currItem.priceCA * CADtoUSD;
 							cellText = document.createTextNode(`$${currentPrice.toFixed(2)} (USD)`);
-						} else if (currency.value === 'KRW') {
+						}
+						// if KRW is selected
+						else if (currency.value === 'KRW') {
+							// Calculate and save the price in KRW
 							currentPrice = currItem.priceCA * CADtoKRW;
+							// Express KRW in thousands
 							cellText = document.createTextNode(`₩${(Math.ceil(currentPrice / 100) * 100).toLocaleString()} (KRW)`);
-						} else {
+						}
+						// if CAD is selected
+						else {
 							currentPrice = currItem.priceCA;
 							cellText = document.createTextNode(`$${currentPrice.toFixed(2)}`);
 						}
 						cell.appendChild(cellText);
 						break;
 
+					// Third column
 					case 2:
 						cellText = document.createTextNode(currItem.quantity);
 						cell.appendChild(cellText);
 						break;
 
+					// Fourth column
 					case 3:
-						let subtotal = currItem.priceCA * currItem.quantity;
-						cellText = document.createTextNode('$' + subtotal.toFixed(2));
-						cell.appendChild(cellText);
+						// Calculate subtotal
+						let subtotal = currentPrice * currItem.quantity;
+						console.log(subtotal);
+						if (currency.value === 'USD') {
+							cellText = document.createTextNode('$' + subtotal.toFixed(2) + '(USD)');
+							cell.appendChild(cellText);
+						}
+						// if KRW is selected
+						else if (currency.value === 'KRW') {
+							// Express the price in thousands
+							cellText = document.createTextNode(`₩${(Math.ceil(subtotal / 100) * 100).toLocaleString()} (KRW)`);
+							cell.appendChild(cellText);
+						}
+						// if CAD is selected
+						else {
+							cellText = document.createTextNode('$' + subtotal.toFixed(2));
+							cell.appendChild(cellText);
+						}
 						break;
 				}
 
@@ -575,38 +656,51 @@ function displayCartItems() {
 		cartItemDisplayTbl.appendChild(tblBody);
 		cartItemDisplayDiv.appendChild(cartItemDisplayTbl);
 	}
-	createCartTotals();
 }
 
 // Calculate and display the totals for the order in the cart
 function createCartTotals() {
-	// • Output the Subtotal of the cart
-	// • Output the estimated shipping
-	// • Output the Subtotal (item subtotal + shipping)
-	// • Output the Tax
-	// • Output the Total (Subtotal + Tax)
+	// Save subtotal of the cart
 	let itemSubtotal = 0;
+	// Save estimated shipping
 	let estimatedShipping = 0;
 
+	// Loop through each item in the cartItemArr array
 	for (let i = 0; i < cartItemArr.length; i++) {
+		// current item from the array
 		let currItem = cartItemArr[i];
+
+		// Calculate subtotal for the current item by multiplying its prize by quantity
 		itemSubtotal += currItem.priceCA * currItem.quantity;
+
+		// Accumulate shipping cost for the current item
 		estimatedShipping += currItem.shippingCost;
 	}
-
+	// Calculate subtotal by adding itemSubtotal and estimatedShipping
 	let subtotal = itemSubtotal + estimatedShipping;
+
+	// Calculate estimated tax by multiplying subtotal by 0.13 (assuming 13% tax rate)
 	let estimatedTax = subtotal * 0.13;
+
+	// Calculate order total by adding subtotal and estimatedTax
 	let orderTotal = subtotal + estimatedTax;
+
+	// Generate HTML output to display subtotal, estimated shipping, estimated tax, and order total
 	let output = `<hr>Items Subtotal: $${itemSubtotal.toFixed(2)}<br>Estimated Shipping: $${estimatedShipping.toFixed(
 		2
 	)}<br><br>Subtotal: $${subtotal.toFixed(2)}<br>Estimated Tax: $${estimatedTax.toFixed(
 		2
 	)}<br>Order Total: $${orderTotal.toFixed(2)}`;
+
+	// Append the output to cart item display div
 	document.getElementById('cartItemDisplayDiv').innerHTML += output;
 }
 
+// Change flag image as the currency is changed
 function changeFlag() {
+	// Flag image
 	const currFlag = document.getElementById('currencyFlag');
+	// Currency
 	const currency = document.getElementById('currencySelector');
 
 	if (currency.value === 'CAD') {
@@ -618,15 +712,21 @@ function changeFlag() {
 	}
 }
 
+// Change quantity select dropdown options as item id is changed
 function changeQtyDropdown() {
+	// if the selected item exists in the storeItemArr
 	if (storeItemArr.find((item) => item.id === document.getElementById('addItemId').value)) {
+		// Get maxPerCustomer and quantityOnHand values for the selected item
 		const maxPerCustomer = storeItemArr.find(
 			(item) => item.id === document.getElementById('addItemId').value
 		).maxPerCustomer;
 		const quantityOnHand = storeItemArr.find(
 			(item) => item.id === document.getElementById('addItemId').value
 		).quantityOnHand;
+
+		// Determine the maximum quantity that can be selected
 		const maxNumber = Math.min(maxPerCustomer, quantityOnHand);
+
 		// Validate maxNumber
 		if (maxNumber > 1) {
 			// Get Dropdown Element
@@ -637,10 +737,11 @@ function changeQtyDropdown() {
 
 			// Add options to dropDown
 			for (let x = 0; x <= maxNumber; x++) {
+				// Set first option as Select Quantity
 				if (x === 0) {
 					let tempElement = document.createElement('option');
-					tempElement.innerHTML = 'Select Quantity';
-					tempElement.value = 0;
+					tempElement.innerHTML = '- Select Quantity -';
+					tempElement.value = '';
 					dropDown.appendChild(tempElement);
 				} else {
 					let tempElement = document.createElement('option');
@@ -650,34 +751,53 @@ function changeQtyDropdown() {
 				}
 			}
 		}
-	} else {
+	}
+	// If the selected item doesn't exist in the storeItemArr, reset the dropdown
+	else {
 		let dropDown = document.getElementById('addItemQty');
 
 		// Empty Dropdown
 		dropDown.innerHTML = '';
 		let tempElement = document.createElement('option');
 		tempElement.innerHTML = 'Select Quantity';
-		tempElement.value = 0;
+		tempElement.value = '';
 		dropDown.appendChild(tempElement);
 	} // end if
 }
 
 function addToCart() {
+	// Get ID of selected item
 	const selectedItem = document.getElementById('addItemId').value;
+
+	// Find the selected item object in the storeItemArr
 	let selectedStoreItemObject = storeItemArr.find((item) => item.id === selectedItem);
-	if (!storeItemArr.find((item) => item.id === selectedItem)) {
+
+	// if the selected item does not exist in the storeItemArr
+	if (!selectedStoreItemObject) {
+		// Display validation message if the item ID is not valid
 		document.getElementById('addIDValidationMessage').innerHTML =
 			'The item ID is not valid. Please enter a valid item ID.';
-	} else {
+	}
+	// if the selected item exists in the storeItemArr
+	else {
+		// Clear the validation message if the item ID is valid
 		document.getElementById('addIDValidationMessage').innerHTML = '';
+
+		// if the selected item is not already in the cart
 		if (!cartItemArr.find((item) => item.id === selectedItem)) {
+			// Create a new cart item object using selected item details
 			const newCartItem = new cartItem(
 				selectedStoreItemObject.id,
 				selectedStoreItemObject.priceCA,
 				document.getElementById('addItemQty').value,
-				selectedStoreItemObject.shipping
+				selectedStoreItemObject.shippingCost
 			);
+
+			// Add the new cart item to the cartItemArr
 			cartItemArr.push(newCartItem);
+		}
+		// if the selected item is already in the cart
+		else {
 		}
 	}
 
@@ -687,8 +807,13 @@ function addToCart() {
 }
 
 function currencyChanged() {
+	// Call the function to handle flag
 	changeFlag();
+
+	// Call functions to display store items and cart items with updated currency
 	displayStoreItems();
+	displayCartItems();
 }
 
+// Call initialize() function when the page loads
 initialize();
