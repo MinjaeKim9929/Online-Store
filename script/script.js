@@ -61,7 +61,7 @@ function initialize() {
 	// Populate the store items array with at least 15 item objects
 	const basketball = new storeItem(
 		'SPOR0001',
-		'NBA OFFICIAL GAME BASKETBALL',
+		'NBA Official game basketball',
 		199.95,
 		70,
 		5,
@@ -502,6 +502,47 @@ function displayCartItems() {
 		// put the <tbody> in the <table>
 		cartItemDisplayTbl.appendChild(tblBody);
 		cartItemDisplayDiv.appendChild(cartItemDisplayTbl);
+	}
+	createCartTotals();
+}
+
+// Calculate and display the totals for the order in the cart
+function createCartTotals() {
+	// • Output the Subtotal of the cart
+	// • Output the estimated shipping
+	// • Output the Subtotal (item subtotal + shipping)
+	// • Output the Tax
+	// • Output the Total (Subtotal + Tax)
+	let itemSubtotal = 0;
+	let estimatedShipping = 0;
+
+	for (let i = 0; i < cartItemArr.length; i++) {
+		let currItem = cartItemArr[i];
+		itemSubtotal += currItem.priceCA * currItem.quantity;
+		estimatedShipping += currItem.shippingCost;
+	}
+
+	let subtotal = itemSubtotal + estimatedShipping;
+	let estimatedTax = subtotal * 0.13;
+	let orderTotal = subtotal + estimatedTax;
+	let output = `<hr>Items Subtotal: $${itemSubtotal.toFixed(2)}<br>Estimated Shipping: $${estimatedShipping.toFixed(
+		2
+	)}<br><br>Subtotal: $${subtotal.toFixed(2)}<br>Estimated Tax: $${estimatedTax.toFixed(
+		2
+	)}<br>Order Total: $${orderTotal.toFixed(2)}`;
+	document.getElementById('cartItemDisplayDiv').innerHTML += output;
+}
+
+function changeFlag() {
+	let currency = document.getElementById('currencySelector');
+	let currFlag = document.getElementById('currencyFlag');
+
+	if (currency.value === 'CAD') {
+		currFlag.src = '/img/flags/CANADA.jpg';
+	} else if (currency.value === 'USD') {
+		currFlag.src = '/img/flags/USA.jpg';
+	} else if (currency.value === 'KRW') {
+		currFlag.src = '/img/flags/SOUTH_KOREA.jpg';
 	}
 }
 
