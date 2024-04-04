@@ -128,7 +128,7 @@ function initialize() {
 		'SPOR0002',
 		'Owala FreeSip Insulated Stainless Steel Water Bottle',
 		42.99,
-		69,
+		5,
 		7,
 		'Sports & Outdoors',
 		1.49,
@@ -618,28 +618,48 @@ function changeFlag() {
 	}
 }
 
-function changeQtyDropdown(maxNumber) {
-	// Validate maxNumber
-	if (maxNumber > 1) {
-		// Get Dropdown Element
-		var dropDown = document.getElementById('itemNumDropdown');
+function changeQtyDropdown() {
+	if (storeItemArr.find((item) => item.id === document.getElementById('addItemId').value)) {
+		const maxPerCustomer = storeItemArr.find(
+			(item) => item.id === document.getElementById('addItemId').value
+		).maxPerCustomer;
+		const quantityOnHand = storeItemArr.find(
+			(item) => item.id === document.getElementById('addItemId').value
+		).quantityOnHand;
+		const maxNumber = Math.min(maxPerCustomer, quantityOnHand);
+		// Validate maxNumber
+		if (maxNumber > 1) {
+			// Get Dropdown Element
+			let dropDown = document.getElementById('addItemQty');
+
+			// Empty Dropdown
+			dropDown.innerHTML = '';
+
+			// Add options to dropDown
+			for (let x = 0; x <= maxNumber; x++) {
+				if (x === 0) {
+					let tempElement = document.createElement('option');
+					tempElement.innerHTML = 'Select Quantity';
+					tempElement.value = 0;
+					dropDown.appendChild(tempElement);
+				} else {
+					let tempElement = document.createElement('option');
+					tempElement.innerHTML = x;
+					tempElement.value = x;
+					dropDown.appendChild(tempElement);
+				}
+			}
+		}
+	} else {
+		let dropDown = document.getElementById('addItemQty');
 
 		// Empty Dropdown
 		dropDown.innerHTML = '';
-
-		// Add options to dropDown
-		for (var x = 1; x <= maxNumber; x++) {
-			var tempElement = document.createElement('option');
-			tempElement.innerHTML = x;
-			tempElement.value = x;
-			dropDown.appendChild(tempElement);
-		}
-
-		console.log('Dropdown updated!');
+		let tempElement = document.createElement('option');
+		tempElement.innerHTML = 'Select Quantity';
+		tempElement.value = 0;
+		dropDown.appendChild(tempElement);
 	} // end if
-	else {
-		console.log('Dropdown not updated!');
-	}
 }
 
 function addToCart() {

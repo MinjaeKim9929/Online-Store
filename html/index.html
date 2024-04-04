@@ -55,12 +55,16 @@
 		<fieldset>
 			<legend>Select Items</legend>
 			<p>
-				Item ID: <input type="text" id="addItemId" />
+				Item ID:
+				<input type="text" id="addItemId" onchange="changeQtyDropdown()" />
 				&nbsp;
 				<span id="addIDValidationMessage" style="color: red"></span>
 			</p>
 			<p>
-				Qty: <input type="number" id="addItemQty" />
+				Qty:
+				<select type="number" id="addItemQty" />
+					<option selected>Select Quantity</option>
+				</select>
 				&nbsp;
 				<span id="addQtyValidationMessage" style="color: red"></span>
 			</p>
