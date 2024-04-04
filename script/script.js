@@ -1,7 +1,6 @@
 'strict mode';
 
 /* Object Constructors */
-
 // Store Item
 function storeItem(
 	id,
@@ -47,7 +46,8 @@ function reviewItem(review, rating) {
 const storeItemArr = [];
 // Empty array for the cart item objects
 const cartItemArr = [];
-
+const CADtoUSD = 0.74;
+const CADtoKRW = 995.58;
 /* Functions */
 
 // Called when the page loads
@@ -328,14 +328,61 @@ function initialize() {
 	);
 
 	displayStoreItems();
-	cartItemArr.push(basketball, FOCUSRITE_SCARLETT_2i2_Gen4);
 	displayCartItems();
 }
 
 // Display dynamically generated store items table
 function displayStoreItems() {
+	const storeItemDisplayDiv = document.getElementById('storeItemDisplayDiv');
+	storeItemDisplayDiv.innerHTML = '';
+
 	// Store Item Display Table
-	const inventoryDisplayTbl = document.getElementById('storeItemDisplay');
+	const inventoryDisplayTbl = document.createElement('table');
+
+	const tblHead = document.createElement('thead');
+	const tr = document.createElement('tr');
+
+	for (let i = 0; i < 7; i++) {
+		const th = document.createElement('th');
+		switch (i) {
+			case 0:
+				th.appendChild(document.createTextNode('ID'));
+				tr.appendChild(th);
+				break;
+
+			case 1:
+				th.appendChild(document.createTextNode('Product Name'));
+				tr.appendChild(th);
+				break;
+
+			case 2:
+				th.appendChild(document.createTextNode('Price'));
+				tr.appendChild(th);
+				break;
+
+			case 3:
+				th.appendChild(document.createTextNode('Quantity on Hand'));
+				tr.appendChild(th);
+				break;
+
+			case 4:
+				th.appendChild(document.createTextNode('Max'));
+				tr.appendChild(th);
+				break;
+
+			case 5:
+				th.appendChild(document.createTextNode('Category'));
+				tr.appendChild(th);
+				break;
+
+			default:
+				th.appendChild(document.createTextNode('Image'));
+				tr.appendChild(th);
+				break;
+		}
+	}
+	tblHead.appendChild(tr);
+	inventoryDisplayTbl.appendChild(tblHead);
 
 	// Create Table Body Element
 	const tblBody = document.createElement('tbody');
@@ -363,7 +410,19 @@ function displayStoreItems() {
 					break;
 
 				case 2:
-					cellText = document.createTextNode('$' + currItem.priceCA.toFixed(2));
+					const currency = document.getElementById('currencySelector');
+					let currentPrice;
+
+					if (currency.value === 'USD') {
+						currentPrice = currItem.priceCA * CADtoUSD;
+						cellText = document.createTextNode(`$${currentPrice.toFixed(2)} (USD)`);
+					} else if (currency.value === 'KRW') {
+						currentPrice = currItem.priceCA * CADtoKRW;
+						cellText = document.createTextNode(`₩${Math.ceil(currentPrice / 100) * 100} (KRW)`);
+					} else {
+						currentPrice = currItem.priceCA;
+						cellText = document.createTextNode(`$${currentPrice.toFixed(2)}`);
+					}
 					cell.appendChild(cellText);
 					break;
 
@@ -416,6 +475,7 @@ function displayStoreItems() {
 	}
 	// put the <tbody> in the <table>
 	inventoryDisplayTbl.appendChild(tblBody);
+	storeItemDisplayDiv.appendChild(inventoryDisplayTbl);
 }
 
 function displayCartItems() {
@@ -478,7 +538,18 @@ function displayCartItems() {
 						break;
 
 					case 1:
-						cellText = document.createTextNode('$' + currItem.priceCA.toFixed(2));
+						const currency = document.getElementById('currencySelector');
+						let currentPrice;
+						if (currency.value === 'USD') {
+							currentPrice = currItem.priceCA * CADtoUSD;
+							cellText = document.createTextNode(`$${currentPrice.toFixed(2)} (USD)`);
+						} else if (currency.value === 'KRW') {
+							currentPrice = currItem.priceCA * CADtoKRW;
+							cellText = document.createTextNode(`₩${Math.ceil(currentPrice / 100) * 100} (KRW)`);
+						} else {
+							currentPrice = currItem.priceCA;
+							cellText = document.createTextNode(`$${currentPrice.toFixed(2)}`);
+						}
 						cell.appendChild(cellText);
 						break;
 
@@ -534,8 +605,8 @@ function createCartTotals() {
 }
 
 function changeFlag() {
-	let currency = document.getElementById('currencySelector');
-	let currFlag = document.getElementById('currencyFlag');
+	const currFlag = document.getElementById('currencyFlag');
+	const currency = document.getElementById('currencySelector');
 
 	if (currency.value === 'CAD') {
 		currFlag.src = '/img/flags/CANADA.jpg';
@@ -544,6 +615,11 @@ function changeFlag() {
 	} else if (currency.value === 'KRW') {
 		currFlag.src = '/img/flags/SOUTH_KOREA.jpg';
 	}
+}
+
+function currencyChanged() {
+	changeFlag();
+	displayStoreItems();
 }
 
 initialize();

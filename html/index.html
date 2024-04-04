@@ -4,9 +4,11 @@
 		<title>Project</title>
 		<style>
 			.currencyFlag {
-				width: 2rem;
-				height: 1.2rem;
-				padding-top: 0.7rem;
+				width: 2.7rem;
+				height: 1.7rem;
+				padding-top: 0.3rem;
+				padding-left: 0.2rem;
+				padding-right: 0.2rem;
 			}
 
 			table,
@@ -31,7 +33,7 @@
 		<span style="float: right">
 			Currency:
 			<img id="currencyFlag" class="currencyFlag" src="/img/flags/CANADA.jpg" />
-			<select id="currencySelector">
+			<select id="currencySelector" onchange="currencyChanged()">
 				<option selected value="CAD">CAD</option>
 				<option value="USD">USD</option>
 				<option value="KRW">KRW</option>
@@ -45,22 +47,7 @@
 				<option>All</option>
 			</select>
 			<br />
-			<div id="storeItemDisplayDiv">
-				<table id="storeItemDisplay">
-					<br />
-					<thead>
-						<tr>
-							<th>ID</th>
-							<th>Product Name</th>
-							<th>Price</th>
-							<th>Quantity on Hand</th>
-							<th>Max</th>
-							<th>Category</th>
-							<th>Image</th>
-						</tr>
-					</thead>
-				</table>
-			</div>
+			<div id="storeItemDisplayDiv"></div>
 		</fieldset>
 		<br />
 		<fieldset>
