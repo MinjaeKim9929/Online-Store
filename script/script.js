@@ -328,6 +328,8 @@ function initialize() {
 	);
 
 	displayStoreItems();
+	cartItemArr.push(basketball, FOCUSRITE_SCARLETT_2i2_Gen4);
+	displayCartItems();
 }
 
 // Display dynamically generated store items table
@@ -354,46 +356,53 @@ function displayStoreItems() {
 					cellText = document.createTextNode(currItem.id);
 					cell.appendChild(cellText);
 					break;
+
 				case 1:
 					cellText = document.createTextNode(currItem.name);
 					cell.appendChild(cellText);
 					break;
+
 				case 2:
 					cellText = document.createTextNode('$' + currItem.priceCA.toFixed(2));
 					cell.appendChild(cellText);
 					break;
+
 				case 3:
 					cellText = document.createTextNode(currItem.quantityOnHand);
 					cell.appendChild(cellText);
 					break;
+
 				case 4:
 					cellText = document.createTextNode(currItem.maxPerCustomer);
 					cell.appendChild(cellText);
 					break;
+
 				case 5:
 					cellText = document.createTextNode(currItem.category);
 					cell.appendChild(cellText);
 					break;
+
 				case 6:
 					const img = document.createElement('img');
 					img.src = currItem.image; // Set the source of your image
 					img.alt = 'Item Image'; // Set alt text for accessibility
+
 					const originalWidth = img.naturalWidth;
 					const originalHeight = img.naturalHeight;
 					const ratio = originalWidth / originalHeight;
 
 					if (originalHeight > originalWidth) {
 						// If width is greater, set it to 150 and calculate the height
-						img.height = 150;
-						img.width = 150 * ratio;
+						img.height = 100;
+						img.width = 100 * ratio;
 					} else {
 						// If width is greater, set it to 150 and calculate the height
-						img.width = 150;
-						img.height = 150 / ratio;
+						img.width = 100;
+						img.height = 100 / ratio;
 					}
-
 					cell.appendChild(img);
 					break;
+
 				default:
 					cellText = document.createTextNode('');
 					cell.appendChild(cellText);
@@ -407,6 +416,93 @@ function displayStoreItems() {
 	}
 	// put the <tbody> in the <table>
 	inventoryDisplayTbl.appendChild(tblBody);
+}
+
+function displayCartItems() {
+	if (cartItemArr.length === 0) {
+		document.getElementById('cartItemDisplayDiv').innerHTML = '<br>No Items in Cart. Add Items to Cart.';
+	} else {
+		// Cart Item Display Div
+		const cartItemDisplayDiv = document.getElementById('cartItemDisplayDiv');
+
+		// Create Table Elements
+		const cartItemDisplayTbl = document.createElement('table');
+		const tblHead = document.createElement('thead');
+		const tr = document.createElement('tr');
+
+		for (let i = 0; i < 4; i++) {
+			const th = document.createElement('th');
+			switch (i) {
+				case 0:
+					th.appendChild(document.createTextNode('ID'));
+					tr.appendChild(th);
+					break;
+
+				case 1:
+					th.appendChild(document.createTextNode('Price'));
+					tr.appendChild(th);
+					break;
+
+				case 2:
+					th.appendChild(document.createTextNode('Quantity'));
+					tr.appendChild(th);
+					break;
+
+				default:
+					th.appendChild(document.createTextNode('Subtotal'));
+					tr.appendChild(th);
+					break;
+			}
+		}
+		tblHead.appendChild(tr);
+		cartItemDisplayTbl.appendChild(tblHead);
+
+		// Create Table Body Element
+		const tblBody = document.createElement('tbody');
+
+		// Generate Dynamic Table as much as the number of items in the cart
+		for (let i = 0; i < cartItemArr.length; i++) {
+			// currently selected item
+			let currItem = cartItemArr[i];
+
+			const row = document.createElement('tr');
+
+			for (let j = 0; j < 4; j++) {
+				// Create a <td> element and a text node, make the text node the contents of the <td>, and put the <td> at the end of the table row
+				const cell = document.createElement('td');
+				let cellText;
+				switch (j) {
+					case 0:
+						cellText = document.createTextNode(currItem.id);
+						cell.appendChild(cellText);
+						break;
+
+					case 1:
+						cellText = document.createTextNode('$' + currItem.priceCA.toFixed(2));
+						cell.appendChild(cellText);
+						break;
+
+					case 2:
+						cellText = document.createTextNode(currItem.quantityOnHand);
+						cell.appendChild(cellText);
+						break;
+
+					case 3:
+						let subtotal = currItem.priceCA * currItem.quantity;
+						cellText = document.createTextNode('$' + subtotal.toFixed(2));
+						cell.appendChild(cellText);
+						break;
+				}
+
+				row.appendChild(cell);
+			}
+			// add the row to the end of the table body
+			tblBody.appendChild(row);
+		}
+		// put the <tbody> in the <table>
+		cartItemDisplayTbl.appendChild(tblBody);
+		cartItemDisplayDiv.appendChild(cartItemDisplayTbl);
+	}
 }
 
 initialize();
