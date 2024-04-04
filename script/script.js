@@ -418,7 +418,7 @@ function displayStoreItems() {
 						cellText = document.createTextNode(`$${currentPrice.toFixed(2)} (USD)`);
 					} else if (currency.value === 'KRW') {
 						currentPrice = currItem.priceCA * CADtoKRW;
-						cellText = document.createTextNode(`₩${Math.ceil(currentPrice / 100) * 100} (KRW)`);
+						cellText = document.createTextNode(`₩${(Math.ceil(currentPrice / 100) * 100).toLocaleString()} (KRW)`);
 					} else {
 						currentPrice = currItem.priceCA;
 						cellText = document.createTextNode(`$${currentPrice.toFixed(2)}`);
@@ -545,7 +545,7 @@ function displayCartItems() {
 							cellText = document.createTextNode(`$${currentPrice.toFixed(2)} (USD)`);
 						} else if (currency.value === 'KRW') {
 							currentPrice = currItem.priceCA * CADtoKRW;
-							cellText = document.createTextNode(`₩${Math.ceil(currentPrice / 100) * 100} (KRW)`);
+							cellText = document.createTextNode(`₩${(Math.ceil(currentPrice / 100) * 100).toLocaleString()} (KRW)`);
 						} else {
 							currentPrice = currItem.priceCA;
 							cellText = document.createTextNode(`$${currentPrice.toFixed(2)}`);
@@ -615,6 +615,31 @@ function changeFlag() {
 	} else if (currency.value === 'KRW') {
 		currFlag.src = '/img/flags/SOUTH_KOREA.jpg';
 	}
+}
+
+function addToCart() {
+	const selectedItem = document.getElementById('addItemId').value;
+	let selectedStoreItemObject = storeItemArr.find((item) => item.id === selectedItem);
+	if (!storeItemArr.find((item) => item.id === selectedItem)) {
+		document.getElementById('addIDValidationMessage').innerHTML =
+			'The item ID is not valid. Please enter a valid item ID.';
+	} else {
+		document.getElementById('addIDValidationMessage').innerHTML = '';
+		let quantity = document.getElementById('addItemQty').value;
+		if (!cartItemArr.find((item) => item.id === selectedItem)) {
+			const newCartItem = new cartItem(
+				selectedStoreItemObject.id,
+				selectedStoreItemObject.priceCA,
+				selectedStoreItemObject.quantity,
+				selectedStoreItemObject.shipping
+			);
+			cartItemArr.push(newCartItem);
+		}
+	}
+
+	// Call the functions for displaying cart items and calculation cart pricing
+	displayCartItems();
+	createCartTotals();
 }
 
 function currencyChanged() {

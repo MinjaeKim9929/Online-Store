@@ -4,8 +4,8 @@
 		<title>Project</title>
 		<style>
 			.currencyFlag {
-				width: 2.7rem;
-				height: 1.7rem;
+				width: 3rem;
+				height: 2rem;
 				padding-top: 0.3rem;
 				padding-left: 0.2rem;
 				padding-right: 0.2rem;
@@ -30,6 +30,7 @@
 		<h1>Online Store</h1>
 		<span id="dateArea" style="float: right">Date/Time</span>
 		<br />
+		<br />
 		<span style="float: right">
 			Currency:
 			<img id="currencyFlag" class="currencyFlag" src="/img/flags/CANADA.jpg" />
@@ -39,6 +40,7 @@
 				<option value="KRW">KRW</option>
 			</select>
 		</span>
+		<br />
 		<br />
 		<br />
 		<fieldset>
@@ -55,16 +57,16 @@
 			<p>
 				Item ID: <input type="text" id="addItemId" />
 				&nbsp;
-				<span id="addIDValidationMessage"></span>
+				<span id="addIDValidationMessage" style="color: red"></span>
 			</p>
 			<p>
 				Qty: <input type="number" id="addItemQty" />
 				&nbsp;
-				<span id="addQtyValidationMessage"></span>
+				<span id="addQtyValidationMessage" style="color: red"></span>
 			</p>
 			<p>
 				<input type="button" value="Item Details" />
-				<input type="button" value="Add Item" />
+				<input type="button" value="Add Item" onclick="addToCart()" />
 				<input type="button" value="Remove Item" />
 			</p>
 		</fieldset>
