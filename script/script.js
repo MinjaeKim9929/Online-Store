@@ -67,7 +67,7 @@ function initialize() {
 		'Sports & Outdoors',
 		4.99,
 		new Array(),
-		`- Wilson NBA Authentic Series Basketball - Indoor/Outdoor, Size 7 - 29.5"\n- NBA OFFICIAL: Wilson is the official basketball of the NBA. This ball features official NBA branding coupled with the iconic Wilson script\n- PURE FEEL COVER: Pro-level feel and durability\n- EVER BOUNCE CONSTURCTION: Consistent bounce every time\n- AIR RETENTION: Inflation retention lining creats longer lasting air retention`,
+		`- Wilson NBA Authentic Series Basketball - Indoor/Outdoor, Size 7 - 29.5"\n- NBA OFFICIAL: Wilson is the official basketball of the NBA.`,
 		'img/storeItems/basketball.jpg'
 	);
 
@@ -80,8 +80,7 @@ function initialize() {
 		'Electronics',
 		0.49,
 		new Array(),
-		`- The Apple 20W USB’C Power Adapter offers fast charging at home, in the office, or on the go.\n- While the power adapter is compatible with any USB C-enabled device, Apple recommends pairing it with the iPad Pro and iPad Air for optimal charging performance.
-    You can also pair it with iPhone 8 or later to take advantage of the fast-charging feature.\n- Works with iPhone, AirPods, iPad and Apple Watch.\n- USB-C wall charger only, charging cable sold separately.`,
+		`- The Apple 20W USB’C Power Adapter offers fast charging at home, in the office, or on the go.\n- Works with iPhone, AirPods, iPad and Apple Watch.`,
 		'img/storeItems/USB_C_20W_Adapter.jpg'
 	);
 
@@ -94,14 +93,7 @@ function initialize() {
 		'Books',
 		0,
 		new Array(),
-		`- THE all-time classic picture book, from generation to generation, sold somewhere in the world every 30 seconds! Have you shared it with a child or grandchild in your life?
-
-    Including a special feature, die cuts, this beautiful board book edition, perfect for teaching the days of the week, offers readers an interactive experience. 
-    
-    "The very hungry caterpillar literally eats his way through the pages of the book—and right into your child's heart..."
-    — Mother's Manual
-    "Gorgeously illustrated, brilliantly innovative..."
-    — The New York Times Book Review`,
+		`- THE all-time classic picture book, from generation to generation, sold somewhere in the world every 30 seconds!`,
 		'img/storeItems/the_VHC.jpg'
 	);
 
@@ -114,12 +106,7 @@ function initialize() {
 		'Home & Kitchen',
 		0.99,
 		new Array(),
-		`THROW PILLOW PACK - Pack of 2 decorative throw pillows for your couches or bedroom; they are neither too big nor too small and they give off a homely vibe
-    PACKAGING - Pillows are compressed in vacuum packaging because of shipping purpose, they might appear as one large pillow.
-    DIMENSIONS - Each pillow measures 18 by 18 inches
-    MATERIAL COMPOSITION – 115 GSM Brushed Fabric and siliconized fiber filling will never make them look hollow
-    SOFT AND DURABLE - The pillows are designed to give a delicate feel while retaining long term durability
-    CARE INSTRUCTIONS - It is recommended to spot clean the pillow or hand wash the fabric`,
+		'THROW PILLOW PACK - Pack of 2 decorative throw pillows for your couches or bedroom; they are neither too big nor too small and they give off a homely vibe',
 		'img/storeItems/utopia_pillows.jpg'
 	);
 
@@ -132,11 +119,7 @@ function initialize() {
 		'Sports & Outdoors',
 		1.49,
 		new Array(),
-		`32-ounce insulated stainless-steel water bottle with a FreeSip spout and push-button lid with lock
-    Patented FreeSip spout designed for either sipping upright through the built-in straw or tilting back to swig from the spout opening
-    Protective push-to-open lid keeps spout clean; convenient carry loop doubles as a lock
-    Double-wall insulation keeps drinks cold for up to 24 hours; wide opening for cleaning and adding ice; cup holder-friendly base
-    BPA, lead, and phthalate-free; hand wash cup, dishwasher-safe lid; not for use with hot liquids`,
+		`32-ounce insulated stainless-steel water bottle with a FreeSip spout and push-button lid with lock`,
 		'img/storeItems/owala_water_bottle.jpg'
 	);
 
@@ -149,11 +132,7 @@ function initialize() {
 		'Clothing, Shoes & Accessories',
 		0,
 		new Array(),
-		`TARNISH RESISTANT: Each chain is crafted of solid 925 Sterling Silver, prevents oxidation
-    LIGHT and DURABLE: The chain is designed to comfortably fit and contains a secure spring ring clasp perfect for Pendants and Charms
-    STAMPED JEWELRY: Each necklace is imported directly from the manufacturer and contains a 925 and Italy hallmark for authenticity
-    Sensitive Skin? HYPOALLERGENIC: No rashes or breakouts. Lead and Nickel Free
-    Buy with CONFIDENCE: Your order is protected. Each product is insured. Satisfaction Guaranteed`,
+		`TARNISH RESISTANT: Each chain is crafted of solid 925 Sterling Silver, prevents oxidation\nLIGHT and DURABLE: The chain is designed to comfortably fit and contains a secure spring ring clasp perfect for Pendants and Charms`,
 		'img/storeItems/KEZEF_necklace.jpg'
 	);
 
@@ -166,11 +145,7 @@ function initialize() {
 		'Sports & Outdoors',
 		0.79,
 		new Array(),
-		`Set of 2 dumbbells for resistance training; each dumbbell weighs 5 pounds
-		Easy-grip neoprene coating for a secure hold
-		Printed weight number on each end cap and color-coded for quick identification
-		Hexagonal shape prevents dumbbells from rolling away
-		Ideal for fitness classes or at-home workout routines`,
+		`Set of 2 dumbbells for resistance training; each dumbbell weighs 5 pounds\nEasy-grip neoprene coating for a secure hold`,
 		'img/storeItems/hand_weights_set.jpg'
 	);
 
@@ -183,13 +158,7 @@ function initialize() {
 		'Electronics',
 		3.0,
 		new Array(),
-		`Keep track of and find your items alongside friends and devices in the Find My app
-		Simple one-tap setup instantly connects AirTag with your iPhone or iPad
-		Play a sound on the built-in speaker to help find your things, or just ask Siri for help
-		Precision Finding with Ultra Wideband technology leads you right to your nearby AirTag (on select iPhone models)
-		Find items further away with the help of hundreds of millions of Apple devices in the Find My network
-		Put AirTag into Lost Mode to be automatically notified when it's detected in the Find My network
-		All communication with the Find My network is anonymous and encrypted for privacy, Location data and history are never stored on AirTag`,
+		`Keep track of and find your items alongside friends and devices in the Find My app. Simple one-tap setup instantly connects AirTag with your iPhone or iPad.`,
 		'img/storeItems/apple_airtag.jpg'
 	);
 
@@ -216,9 +185,7 @@ function initialize() {
 		0,
 		new Array(),
 		`Get great-tasting water with Brita Standard water filter replacement; Packaging may vary. Switch to Brita and you can save money and replace 1800 single-use plastic bottles* a year *500 mL water bottle.
-		Reduce Chlorine (taste & odour) Mercury, Copper, Zinc, Cadmium.
-		For the best tasting water, replace your water filter after 151 litres or approximately every 2 months; Brita Standard filters last 2x longer than ZeroWater filters.
-		Compatible with all Brita pitchers and dispensers except Stream; Brita water filters are simple to replace with a pull top cap for easy removal`,
+		Reduce Chlorine (taste & odour) Mercury, Copper, Zinc, Cadmium.`,
 		'img/storeItems/brita_standard_water_filter.jpg'
 	);
 
@@ -231,10 +198,7 @@ function initialize() {
 		'Clothing, Shoes & Accessories',
 		1.15,
 		new Array(),
-		`【Thickened Soft Sole EVA Foam】The pillow slippers use EVA soles and protection design to make you feel like stepping on the pillow. Forward and backward shock absorption, reduce foot damage.
-		【Double Anti-Slip】The interior of pillow slippers slides adopts a dot-shaped raised design, and the sole adopts a wave-shaped raised anti-skid design. Double anti-slip, double safety. More suitable for shower pool and beach wear.
-		【Occasion】 Indoor and outdoor, perfects for all season：house slippers, bathroom showers, swimming pool, SPA, sea beach ,leisure,street casual fashion, etc.
-		【ATTENTION】 This pillow sandals are made of EVA material, they may shrink and deform at high temperature, please do not expose them to direct sunlight for a long time.`,
+		`【Thickened Soft Sole EVA Foam】The pillow slippers use EVA soles and protection design to make you feel like stepping on the pillow. Forward and backward shock absorption, reduce foot damage.`,
 		'img/storeItems/BENSORTS_pillow_sandals.jpg'
 	);
 
@@ -247,11 +211,7 @@ function initialize() {
 		'Automotive',
 		0,
 		new Array(),
-		`Rain-X Weatherbeater are high-quality conventional wiper blades that have stood the test of time, meeting or exceeding OEM standards for quality and durability
-		The all natural rubber squeegee resists cracking, splitting, and tearing caused by hot and cold weather conditions, washer fluid, and road salt
-		Multiple pressure points and embedded friction reducers enable even pressure distribution across the length of the wiper blade helping to deliver a clean wipe
-		Conventional blade structure with a galvanized steel frame provides long-lasting strength and durability and prevents rust and corrosion
-		Weatherbeater wiper blades are equipped with a pre-installed J-hook adapter for easy installation on most vehicles and contains adapters for Bayonet and Pin Arms.`,
+		`Rain-X Weatherbeater are high-quality conventional wiper blades that have stood the test of time, meeting or exceeding OEM standards for quality and durability`,
 		'img/storeItems/wiper_blade_26in.jpg'
 	);
 
@@ -264,13 +224,7 @@ function initialize() {
 		'Musical Instrument, Stage & Studio',
 		0,
 		new Array(),
-		`EXEPTIONAL VOCAL PERFORMANCE - The SM58-LC delivers high-quality vocal reproduction, thanks to its tailored frequency response and brightened midrange for clear and present vocals.
-		INDUSTRY STANDARD - The first choice for performers around the globe, the SM58 Dynamic Vocal Microphone is ready to bring any performance to life. From the club to the stadium, Shure has your back.
-		CLARITY & CARE - The uniform cardioid polar pattern reproduces every note as it was intended, delivering warm, crisp sound time after time.
-		LEAVE BACKGROUND NOISE BEHIND - The SM58 has a spherical mesh grille and built-in pop filter to keep any unwanted noise out of the mix.
-		DROP THE MIC - The durable construction and break-resistant stand adapter makes the SM58 the perfect companion on the road, going strong through the toughest performances.
-		VERSATILE - The SM58 can hold its own live onstage as well as in the studio, isolating between vocals and instruments.
-		WHAT’S IN THE BOX - Shure SM58 Dynamic Vocal Microphone, 1 - A25D Swivel Stand Adapter, 1 - 95A2313 Storage Bag, Free 2-YEAR WARRANTY included.`,
+		`EXEPTIONAL VOCAL PERFORMANCE - The SM58-LC delivers high-quality vocal reproduction, thanks to its tailored frequency response and brightened midrange for clear and present vocals.\nWHAT’S IN THE BOX - Shure SM58 Dynamic Vocal Microphone, 1 - A25D Swivel Stand Adapter, 1 - 95A2313 Storage Bag, Free 2-YEAR WARRANTY included.`,
 		'img/storeItems/SHURE_SM58_LC.jpg'
 	);
 
@@ -283,11 +237,7 @@ function initialize() {
 		'Musical Instrument, Stage & Studio',
 		10.89,
 		new Array(),
-		`The artist's interface: Scarlett's 4th Gen mic pres and a massive 120dB dynamic range deliver the audio performance you'd find in a pro studio.
-		Never lose a great take: Auto Gain sets the perfect level for your mic or guitar, and Clip Safe prevents clipping, so you can focus on the music.
-		Find your signature sound: Air mode lifts vocals and guitars to the front of the mix, adding musical presence and rich harmonic drive to your recordings.
-		Everything you need to record, mix and master your music: Includes industry-leading recording software and a full collection of record-making plugins.
-		Easy Start: It’s never been easier to get recording. Focusrite’s tried-and-tested Easy Start tool will have you making music in minutes.`,
+		`The artist's interface: Scarlett's 4th Gen mic pres and a massive 120dB dynamic range deliver the audio performance you'd find in a pro studio.`,
 		'img/storeItems/SCARLETT_2i2_gen4.jpg'
 	);
 
@@ -300,11 +250,7 @@ function initialize() {
 		'Automotive',
 		0.99,
 		new Array(),
-		`【LARGE CAPACITY 】The size is 9.25*5.25*10.75 inches, our car trash can with a large compartment, two elastic mesh pockets on the side, and an open pocket at the front, which can hold 2.25 Gallon/8.5L capacity to save space, it can be folded up when not in use, very convenient.
-		【THOUGHTFUL DESIGN 】Our car trash bin with soft lid that is a rubber X-shaped opening and velcro seal can be loaded with tissue paper, fruit peels, and the bottle can be closed or even cover up the waste and keep the internal smell without lifting the lid.
-		【PREMIUM MATERIAL 】This car trash bag is made of waterproof and durable 600D high-quality material, the inner material of the car accessories women is a waterproof and easy-to-clean PEVA lining. You can put it directly in the garbage, or put a disposable bag inside, and use two side clips to fix the handle of the bag, just keep everything clean.
-		【MULTIPURPOSE 】PEVA lining also has the effect of thermal insulation. This car accessories not only hold garbage, but also a thermal insulation bag. You can put hot food, cold objects, fruits, drinks, snacks in it, and it can keep hot for several hours. The temperature of food and the coolness of drinks can also be used as a storage bag for other small items such as paper towels, toys, bags, snacks, umbrellas and other things you want to pack.
-		【FIT ANYWHERE IN CAR 】There is an easily adjustable buckle strap on the back of the car accessories, which can be placed in many places and can be hung on the front or back of the seat, the center console, the glove box and even the gear lever.`,
+		`【LARGE CAPACITY 】The size is 9.25*5.25*10.75 inches, our car trash can with a large compartment, two elastic mesh pockets on the side, and an open pocket at the front, which can hold 2.25 Gallon/8.5L capacity to save space, it can be folded up when not in use, very convenient.`,
 		'img/storeItems/car_trashcan.jpg'
 	);
 
@@ -706,11 +652,6 @@ function changeQtyDropdown() {
 
 // Add item to cart
 function addToCart() {
-	// Get ID of selected item
-	const selectedItem = document.getElementById('addItemId').value;
-	// Get quantity of item selected
-	const qtySelected = document.getElementById('addItemQty').value;
-
 	// Find the selected item object in the storeItemArr
 	let selectedStoreItemObject = storeItemArr.find((item) => item.id === selectedItem);
 
@@ -862,7 +803,7 @@ function currencyChanged() {
 // Display
 function displayItemDetails() {
 	// Get ID of selected item
-	const selectedItem = document.getElementById('reviewId').value;
+	const selectedItem = document.getElementById('addItemId').value;
 
 	// Find the selected item object in the storeItemArr
 	let selectedStoreItemObject = storeItemArr.find((item) => item.id === selectedItem);
@@ -882,16 +823,20 @@ function displayItemDetails() {
 			selectedStoreItemObject.category
 		}\nShipping Cost: ${expressPrice(convertPrice(selectedStoreItemObject.shippingCost))}\n\nDescription: \n${
 			selectedStoreItemObject.description
-		}\n\nReviews\n`;
+		}\n\n`;
 
-		let sumRating = 0;
-		for (let i = 1; i <= selectedStoreItemObject.reviews.length; i++) {
-			let currReview = selectedStoreItemObject.reviews[i - 1];
-			sumRating += currReview.rating;
-			message += `Review ${i}: ${currReview.review}\n`;
+		if (selectedStoreItemObject.reviews.length > 0) {
+			message += 'Reviews\n';
+			let sumRating = 0;
+			for (let i = 1; i <= selectedStoreItemObject.reviews.length; i++) {
+				let currReview = selectedStoreItemObject.reviews[i - 1];
+				sumRating += currReview.rating;
+				message += `Review ${i}: ${currReview.review}\n`;
+			}
+			let averageRating = sumRating / selectedStoreItemObject.reviews.length;
+
+			message += `\nAverage Rating: ${averageRating.toFixed(1)}`;
 		}
-		sumRating /= selectedStoreItemObject.reviews.length;
-		message += `\nAverage Rating: ${sumRating.toFixed(1)}`;
 		alert(message);
 	}
 }
@@ -918,6 +863,56 @@ function expressPrice(price) {
 	} else {
 		return `₩${(Math.ceil(price / 100) * 100).toLocaleString()} (KRW)`;
 	}
+}
+
+function validateSelectItems() {
+	const itemID = document.getElementById('addItemId').value;
+	const quantity = document.getElementById('addItemQty').value;
+	const IDValidationMsg = document.getElementById('addIDValidationMessage');
+	const qtyValidationMsg = document.getElementById('addQtyValidationMessage');
+
+	// Reset validation messages
+	IDValidationMsg.innerHTML = '';
+	qtyValidationMsg.innerHTML = '';
+
+	// Check if the item exists
+	if (!storeItemArr.find((item) => item.id === itemID)) {
+		IDValidationMsg.innerHTML = `Item with the ID "${itemID}" does not exist. Please enter a valid item ID.`;
+		return false; // Return false to indicate validation failed
+	}
+
+	// Check if quantity is valid
+	if (!Number.isInteger(quantity) || quantity <= 0) {
+		qtyValidationMsg.innerHTML = 'Please enter a valid quantity.';
+		return false;
+	}
+
+	return true;
+}
+
+function validateCartItems() {
+	const itemID = document.getElementById('reviewId').value;
+	const rating = document.getElementById('reviewNum').value;
+	const IDValidationMsg = document.getElementById('reviewIdMsg');
+	const ratingValidationMsg = document.getElementById('addRatingValidationMessage');
+
+	// Reset validation messages
+	IDValidationMsg.innerHTML = '';
+	ratingValidationMsg.innerHTML = '';
+
+	// Check if the item exists
+	if (!cartItemArr.find((item) => item.id === itemID)) {
+		IDValidationMsg.innerHTML = `Item with the ID "${itemID}" does not exist in the cart. Please enter a valid item ID.`;
+		return false; // Return false to indicate validation failed
+	}
+
+	// Check if quantity is valid
+	if (rating === 0) {
+		ratingValidationMsg.innerHTML = 'Please enter a valid rating. (1 ~ 5)';
+		return false;
+	}
+
+	return true;
 }
 
 // Call initialize() function when the page loads
