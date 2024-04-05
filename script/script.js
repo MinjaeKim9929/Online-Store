@@ -46,8 +46,7 @@ function reviewItem(review, rating) {
 let storeItemArr = [];
 // Empty array for the cart item objects
 let cartItemArr = [];
-const CADtoUSD = 0.74;
-const CADtoKRW = 995.58;
+
 /* Functions */
 
 // Called when the page loads
@@ -428,28 +427,7 @@ function displayStoreItems() {
 
 				// Third column
 				case 2:
-					// Currently selected currency
-					const currency = document.getElementById('currencySelector');
-					// Save the calculated price of the current currency
-					let currentPrice;
-					// if USD is selected
-					if (currency.value === 'USD') {
-						// Calculate and save the price in USD
-						currentPrice = currItem.priceCA * CADtoUSD;
-						cellText = document.createTextNode(`$${currentPrice.toFixed(2)} (USD)`);
-					}
-					// if KRW is selected
-					else if (currency.value === 'KRW') {
-						// Calculate and save the price in KRW
-						currentPrice = currItem.priceCA * CADtoKRW;
-						// Express KRW in thousands
-						cellText = document.createTextNode(`₩${(Math.ceil(currentPrice / 100) * 100).toLocaleString()} (KRW)`);
-					}
-					// if CAD is selected
-					else {
-						currentPrice = currItem.priceCA;
-						cellText = document.createTextNode(`$${currentPrice.toFixed(2)}`);
-					}
+					cellText = document.createTextNode(expressPrice(convertPrice(currItem.priceCA)));
 					cell.appendChild(cellText);
 					break;
 
@@ -575,15 +553,9 @@ function displayCartItems() {
 
 			const row = document.createElement('tr');
 
-			// Save the calculated price of the current currency
-			let currentPrice;
-
 			for (let j = 0; j < 4; j++) {
 				// Create a <td> element and a text node, make the text node the contents of the <td>, and put the <td> at the end of the table row
 				const cell = document.createElement('td');
-
-				// currently selected currency
-				const currency = document.getElementById('currencySelector');
 
 				let cellText;
 
@@ -596,24 +568,7 @@ function displayCartItems() {
 
 					// Second column
 					case 1:
-						// if USD is selected
-						if (currency.value === 'USD') {
-							// Calculate and save the price in USD
-							currentPrice = currItem.priceCA * CADtoUSD;
-							cellText = document.createTextNode(`$${currentPrice.toFixed(2)} (USD)`);
-						}
-						// if KRW is selected
-						else if (currency.value === 'KRW') {
-							// Calculate and save the price in KRW
-							currentPrice = currItem.priceCA * CADtoKRW;
-							// Express KRW in thousands
-							cellText = document.createTextNode(`₩${(Math.ceil(currentPrice / 100) * 100).toLocaleString()} (KRW)`);
-						}
-						// if CAD is selected
-						else {
-							currentPrice = currItem.priceCA;
-							cellText = document.createTextNode(`$${currentPrice.toFixed(2)}`);
-						}
+						cellText = document.createTextNode(expressPrice(convertPrice(currItem.priceCA)));
 						cell.appendChild(cellText);
 						break;
 
@@ -626,22 +581,9 @@ function displayCartItems() {
 					// Fourth column
 					case 3:
 						// Calculate subtotal
-						let subtotal = currentPrice * currItem.quantity;
-						if (currency.value === 'USD') {
-							cellText = document.createTextNode('$' + subtotal.toFixed(2) + '(USD)');
-							cell.appendChild(cellText);
-						}
-						// if KRW is selected
-						else if (currency.value === 'KRW') {
-							// Express the price in thousands
-							cellText = document.createTextNode(`₩${(Math.ceil(subtotal / 100) * 100).toLocaleString()} (KRW)`);
-							cell.appendChild(cellText);
-						}
-						// if CAD is selected
-						else {
-							cellText = document.createTextNode('$' + subtotal.toFixed(2));
-							cell.appendChild(cellText);
-						}
+						let subtotal = convertPrice(currItem.priceCA) * currItem.quantity;
+						cellText = document.createTextNode(expressPrice(subtotal));
+						cell.appendChild(cellText);
 						break;
 				}
 
@@ -915,6 +857,50 @@ function currencyChanged() {
 	// Call functions to display store items and cart items with updated currency
 	displayStoreItems();
 	displayCartItems();
+}
+
+// Display
+function displayItemDetails() {
+	// Get ID of selected item
+	const selectedItem = document.getElementById('reviewId').value;
+
+	// Find the selected item object in the storeItemArr
+	let selectedStoreItemObject = storeItemArr.find((item) => item.id === selectedItem);
+	let price = selectedStoreItemObject.priceCA;
+
+	if (!selectedStoreItemObject) {
+		// Display validation message if the item ID is not valid
+		document.getElementById(
+			'addIDValidationMessage'
+		).innerHTML = `Item with the ID "${selectedItem}" does not exist. Please enter a valid item ID.`;
+	} else {
+		document.getElementById('addIDValidationMessage').innerHTML = '';
+		let message = `Item Details\nID: ${selectedStoreItemObject.id}\nName: ${selectedStoreItemObject.name}\nPrice: $`;
+	}
+}
+
+function convertPrice(price) {
+	const currency = document.getElementById('currencySelector').value;
+	const CADtoUSD = 0.74;
+	const CADtoKRW = 995.58;
+	if (currency === 'CAD') {
+		return price;
+	} else if (currency === 'USD') {
+		return price * CADtoUSD;
+	} else {
+		return price * CADtoKRW;
+	}
+}
+
+function expressPrice(price) {
+	const currency = document.getElementById('currencySelector').value;
+	if (currency === 'CAD') {
+		return `$${price.toFixed(2)}`;
+	} else if (currency === 'USD') {
+		return `$${price.toFixed(2)} (USD)`;
+	} else {
+		return `₩${(Math.ceil(price / 100) * 100).toLocaleString()} (KRW)`;
+	}
 }
 
 // Call initialize() function when the page loads
