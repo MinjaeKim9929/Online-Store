@@ -43,9 +43,9 @@ function reviewItem(review, rating) {
 /* Global Variables */
 
 // Empty array for the store item objects
-const storeItemArr = [];
+let storeItemArr = [];
 // Empty array for the cart item objects
-const cartItemArr = [];
+let cartItemArr = [];
 const CADtoUSD = 0.74;
 const CADtoKRW = 995.58;
 /* Functions */
@@ -69,7 +69,7 @@ function initialize() {
 		4.99,
 		new Array(),
 		`- Wilson NBA Authentic Series Basketball - Indoor/Outdoor, Size 7 - 29.5"\n- NBA OFFICIAL: Wilson is the official basketball of the NBA. This ball features official NBA branding coupled with the iconic Wilson script\n- PURE FEEL COVER: Pro-level feel and durability\n- EVER BOUNCE CONSTURCTION: Consistent bounce every time\n- AIR RETENTION: Inflation retention lining creats longer lasting air retention`,
-		'/img/storeItems/basketball.jpg'
+		'img/storeItems/basketball.jpg'
 	);
 
 	const adapter_USB_C_20W = new storeItem(
@@ -83,7 +83,7 @@ function initialize() {
 		new Array(),
 		`- The Apple 20W USB’C Power Adapter offers fast charging at home, in the office, or on the go.\n- While the power adapter is compatible with any USB C-enabled device, Apple recommends pairing it with the iPad Pro and iPad Air for optimal charging performance.
     You can also pair it with iPhone 8 or later to take advantage of the fast-charging feature.\n- Works with iPhone, AirPods, iPad and Apple Watch.\n- USB-C wall charger only, charging cable sold separately.`,
-		'/img/storeItems/USB_C_20W_Adapter.jpg'
+		'img/storeItems/USB_C_20W_Adapter.jpg'
 	);
 
 	const the_VHC = new storeItem(
@@ -103,7 +103,7 @@ function initialize() {
     — Mother's Manual
     "Gorgeously illustrated, brilliantly innovative..."
     — The New York Times Book Review`,
-		'/img/storeItems/the_VHC.jpg'
+		'img/storeItems/the_VHC.jpg'
 	);
 
 	const utopia_pillows = new storeItem(
@@ -121,7 +121,7 @@ function initialize() {
     MATERIAL COMPOSITION – 115 GSM Brushed Fabric and siliconized fiber filling will never make them look hollow
     SOFT AND DURABLE - The pillows are designed to give a delicate feel while retaining long term durability
     CARE INSTRUCTIONS - It is recommended to spot clean the pillow or hand wash the fabric`,
-		'/img/storeItems/utopia_pillows.jpg'
+		'img/storeItems/utopia_pillows.jpg'
 	);
 
 	const owala_water_bottle = new storeItem(
@@ -138,7 +138,7 @@ function initialize() {
     Protective push-to-open lid keeps spout clean; convenient carry loop doubles as a lock
     Double-wall insulation keeps drinks cold for up to 24 hours; wide opening for cleaning and adding ice; cup holder-friendly base
     BPA, lead, and phthalate-free; hand wash cup, dishwasher-safe lid; not for use with hot liquids`,
-		'/img/storeItems/owala_water_bottle.jpg'
+		'img/storeItems/owala_water_bottle.jpg'
 	);
 
 	const KEZEF_necklace = new storeItem(
@@ -155,7 +155,7 @@ function initialize() {
     STAMPED JEWELRY: Each necklace is imported directly from the manufacturer and contains a 925 and Italy hallmark for authenticity
     Sensitive Skin? HYPOALLERGENIC: No rashes or breakouts. Lead and Nickel Free
     Buy with CONFIDENCE: Your order is protected. Each product is insured. Satisfaction Guaranteed`,
-		'/img/storeItems/KEZEF_necklace.jpg'
+		'img/storeItems/KEZEF_necklace.jpg'
 	);
 
 	const dumbbell_hand_weights_set = new storeItem(
@@ -172,7 +172,7 @@ function initialize() {
 		Printed weight number on each end cap and color-coded for quick identification
 		Hexagonal shape prevents dumbbells from rolling away
 		Ideal for fitness classes or at-home workout routines`,
-		'/img/storeItems/hand_weights_set.jpg'
+		'img/storeItems/hand_weights_set.jpg'
 	);
 
 	const APPLE_airtag = new storeItem(
@@ -191,7 +191,7 @@ function initialize() {
 		Find items further away with the help of hundreds of millions of Apple devices in the Find My network
 		Put AirTag into Lost Mode to be automatically notified when it's detected in the Find My network
 		All communication with the Find My network is anonymous and encrypted for privacy, Location data and history are never stored on AirTag`,
-		'/img/storeItems/apple_airtag.jpg'
+		'img/storeItems/apple_airtag.jpg'
 	);
 
 	const first_100_words = new storeItem(
@@ -204,7 +204,7 @@ function initialize() {
 		0.15,
 		new Array(),
 		`Your little one will soon learn some essential first words and pictures with this bright board book. There are 100 color photographs to look at and talk about, and 100 simple first words to read and learn, too. The pages are made from tough board for hours of fun reading, and the cover is softly padded for little hands to hold.`,
-		'/img/storeItems/first_100_words.jpg'
+		'img/storeItems/first_100_words.jpg'
 	);
 
 	const BRITA_standard_water_filter = new storeItem(
@@ -220,7 +220,7 @@ function initialize() {
 		Reduce Chlorine (taste & odour) Mercury, Copper, Zinc, Cadmium.
 		For the best tasting water, replace your water filter after 151 litres or approximately every 2 months; Brita Standard filters last 2x longer than ZeroWater filters.
 		Compatible with all Brita pitchers and dispensers except Stream; Brita water filters are simple to replace with a pull top cap for easy removal`,
-		'/img/storeItems/brita_standard_water_filter.jpg'
+		'img/storeItems/brita_standard_water_filter.jpg'
 	);
 
 	const BENSORTS_pillow_sandals = new storeItem(
@@ -236,7 +236,7 @@ function initialize() {
 		【Double Anti-Slip】The interior of pillow slippers slides adopts a dot-shaped raised design, and the sole adopts a wave-shaped raised anti-skid design. Double anti-slip, double safety. More suitable for shower pool and beach wear.
 		【Occasion】 Indoor and outdoor, perfects for all season：house slippers, bathroom showers, swimming pool, SPA, sea beach ,leisure,street casual fashion, etc.
 		【ATTENTION】 This pillow sandals are made of EVA material, they may shrink and deform at high temperature, please do not expose them to direct sunlight for a long time.`,
-		'/img/storeItems/BENSORTS_pillow_sandals.jpg'
+		'img/storeItems/BENSORTS_pillow_sandals.jpg'
 	);
 
 	const wiper_blade_26in = new storeItem(
@@ -253,7 +253,7 @@ function initialize() {
 		Multiple pressure points and embedded friction reducers enable even pressure distribution across the length of the wiper blade helping to deliver a clean wipe
 		Conventional blade structure with a galvanized steel frame provides long-lasting strength and durability and prevents rust and corrosion
 		Weatherbeater wiper blades are equipped with a pre-installed J-hook adapter for easy installation on most vehicles and contains adapters for Bayonet and Pin Arms.`,
-		'/img/storeItems/wiper_blade_26in.jpg'
+		'img/storeItems/wiper_blade_26in.jpg'
 	);
 
 	const SHURE_SM58_LC = new storeItem(
@@ -272,7 +272,7 @@ function initialize() {
 		DROP THE MIC - The durable construction and break-resistant stand adapter makes the SM58 the perfect companion on the road, going strong through the toughest performances.
 		VERSATILE - The SM58 can hold its own live onstage as well as in the studio, isolating between vocals and instruments.
 		WHAT’S IN THE BOX - Shure SM58 Dynamic Vocal Microphone, 1 - A25D Swivel Stand Adapter, 1 - 95A2313 Storage Bag, Free 2-YEAR WARRANTY included.`,
-		'/img/storeItems/SHURE_SM58_LC.jpg'
+		'img/storeItems/SHURE_SM58_LC.jpg'
 	);
 
 	const FOCUSRITE_SCARLETT_2i2_Gen4 = new storeItem(
@@ -289,7 +289,7 @@ function initialize() {
 		Find your signature sound: Air mode lifts vocals and guitars to the front of the mix, adding musical presence and rich harmonic drive to your recordings.
 		Everything you need to record, mix and master your music: Includes industry-leading recording software and a full collection of record-making plugins.
 		Easy Start: It’s never been easier to get recording. Focusrite’s tried-and-tested Easy Start tool will have you making music in minutes.`,
-		'/img/storeItems/SCARLETT_2i2_gen4.jpg'
+		'img/storeItems/SCARLETT_2i2_gen4.jpg'
 	);
 
 	const car_trashcan = new storeItem(
@@ -306,7 +306,7 @@ function initialize() {
 		【PREMIUM MATERIAL 】This car trash bag is made of waterproof and durable 600D high-quality material, the inner material of the car accessories women is a waterproof and easy-to-clean PEVA lining. You can put it directly in the garbage, or put a disposable bag inside, and use two side clips to fix the handle of the bag, just keep everything clean.
 		【MULTIPURPOSE 】PEVA lining also has the effect of thermal insulation. This car accessories not only hold garbage, but also a thermal insulation bag. You can put hot food, cold objects, fruits, drinks, snacks in it, and it can keep hot for several hours. The temperature of food and the coolness of drinks can also be used as a storage bag for other small items such as paper towels, toys, bags, snacks, umbrellas and other things you want to pack.
 		【FIT ANYWHERE IN CAR 】There is an easily adjustable buckle strap on the back of the car accessories, which can be placed in many places and can be hung on the front or back of the seat, the center console, the glove box and even the gear lever.`,
-		'/img/storeItems/car_trashcan.jpg'
+		'img/storeItems/car_trashcan.jpg'
 	);
 
 	storeItemArr.push(
@@ -475,32 +475,31 @@ function displayStoreItems() {
 				case 6:
 					// Create image element
 					const img = document.createElement('img');
+					img.onload = function () {
+						// Save width of original image
+						const originalWidth = img.naturalWidth;
+						// Save height of original image
+						const originalHeight = img.naturalHeight;
+						// The ratio of width to height
+						const ratio = originalWidth / originalHeight;
+
+						// If width is greater, set it to 100 and calculate the height
+						if (originalHeight > originalWidth) {
+							img.height = 100;
+							img.width = 100 * ratio;
+						}
+						// If width is greater, set it to 100 and calculate the height
+						else {
+							img.width = 100;
+							img.height = 100 / ratio;
+						}
+					};
 					img.src = currItem.image; // Set the source of your image
 					img.alt = 'Item Image'; // Set alt text for accessibility
-
-					// Save width of original image
-					const originalWidth = img.naturalWidth;
-					// Save height of original image
-					const originalHeight = img.naturalHeight;
-					// The ratio of width to height
-					const ratio = originalWidth / originalHeight;
-
-					// If width is greater, set it to 100 and calculate the height
-					if (originalHeight > originalWidth) {
-						img.height = 100;
-						img.width = 100 * ratio;
-					}
-					// If width is greater, set it to 100 and calculate the height
-					else {
-						img.width = 100;
-						img.height = 100 / ratio;
-					}
 					cell.appendChild(img);
 					break;
 
 				default:
-					cellText = document.createTextNode('');
-					cell.appendChild(cellText);
 					break;
 			}
 			// td element to tr
@@ -703,11 +702,11 @@ function changeFlag() {
 	const currency = document.getElementById('currencySelector');
 
 	if (currency.value === 'CAD') {
-		currFlag.src = '/img/flags/CANADA.jpg';
+		currFlag.src = 'img/flags/CANADA.jpg';
 	} else if (currency.value === 'USD') {
-		currFlag.src = '/img/flags/USA.jpg';
+		currFlag.src = 'img/flags/USA.jpg';
 	} else if (currency.value === 'KRW') {
-		currFlag.src = '/img/flags/SOUTH_KOREA.jpg';
+		currFlag.src = 'img/flags/SOUTH_KOREA.jpg';
 	}
 }
 
@@ -763,6 +762,7 @@ function changeQtyDropdown() {
 	} // end if
 }
 
+// Add item to cart
 function addToCart() {
 	// Get ID of selected item
 	const selectedItem = document.getElementById('addItemId').value;
@@ -775,8 +775,9 @@ function addToCart() {
 	// if the selected item does not exist in the storeItemArr
 	if (!selectedStoreItemObject) {
 		// Display validation message if the item ID is not valid
-		document.getElementById('addIDValidationMessage').innerHTML =
-			'The item ID is not valid. Please enter a valid item ID.';
+		document.getElementById(
+			'addIDValidationMessage'
+		).innerHTML = `Item with the ID "${selectedItem}" does not exist. Please enter a valid item ID.`;
 	}
 	// if the selected item exists in the storeItemArr
 	else {
@@ -825,13 +826,86 @@ function addToCart() {
 		}
 	}
 
-	// Call the functions for displaying cart items and calculation cart pricing
+	// Call the functions for displaying store/cart items and calculation cart pricing
 	displayStoreItems();
 	displayCartItems();
 	createCartTotals();
 }
 
-function removeFromCart() {}
+// Remove item from the cart
+function removeFromCart() {
+	// Selected item
+	const selectedItem = document.getElementById('addItemId').value;
+	// Get quantity of item selected
+	const qtySelected = document.getElementById('addItemQty').value;
+
+	// Find the selected item object in the cartItemArr
+	let selectedCartItemObject = cartItemArr.find((item) => item.id === selectedItem);
+
+	// Find the selected item object in the storeItemArr
+	let selectedStoreItemObject = storeItemArr.find((item) => item.id === selectedItem);
+
+	// if the selected item does not exist in the storeItemArr
+	if (!selectedCartItemObject) {
+		// Display validation message if the item ID is not valid
+		document.getElementById(
+			'addIDValidationMessage'
+		).innerHTML = `Item with the ID "${selectedItem}" does not exist in the cart. Please enter a valid item ID.`;
+	}
+	// if the selected item exists in the storeItemArr
+	else {
+		// If the quantity to remove is less than the current quantity in the cart
+		if (qtySelected < selectedCartItemObject.quantity) {
+			// Subtract the specified removal quantity from the item's quantity in the cart
+			selectedCartItemObject.quantity -= qtySelected;
+			// Add the removed quantity back to the store's inventory
+			selectedStoreItemObject.quantity += qtySelected;
+		}
+		// If the quantity to remove equals or exceeds the item's quantity in the cart
+		else {
+			// Remove the item entirely from the cart array
+			cartItemArr = cartItemArr.filter((item) => item.id !== selectedItem);
+			// Add the full quantity of the removed item back to the store's inventory
+			selectedStoreItemObject.quantityOnHand += selectedCartItemObject.quantity;
+		}
+	}
+
+	// Call the functions for displaying store/cart items and calculation cart pricing
+	displayStoreItems();
+	displayCartItems();
+	createCartTotals();
+}
+
+// Review Item
+function addReviewItem() {
+	// Get ID of selected item
+	const selectedItem = document.getElementById('reviewId').value;
+
+	// Find the selected item object in the storeItemArr
+	let selectedStoreItemObject = storeItemArr.find((item) => item.id === selectedItem);
+
+	// if the selected item does not exist in the storeItemArr
+	if (!selectedStoreItemObject) {
+		// Display validation message if the item ID is not valid
+		document.getElementById(
+			'reviewIdMsg'
+		).innerHTML = `Item with the ID "${selectedItem}" does not exist. Please enter a valid item ID.`;
+	}
+	// if the selected item exists
+	else {
+		document.getElementById('reviewIdMsg').innerHTML = ``;
+		const review = document.getElementById('reviewDesc').value;
+		const rating = document.getElementById('reviewNum').value;
+		console.log(typeof rating);
+		if (rating === '') {
+			document.getElementById('addRatingValidationMessage').innerHTML = 'Please select a rating between 1 and 5.';
+		} else {
+			document.getElementById('addRatingValidationMessage').innerHTML = '';
+			const newReview = new reviewItem(review, rating);
+			selectedStoreItemObject.reviews.push(newReview);
+		}
+	}
+}
 
 // Function that is called when the currency is changed
 function currencyChanged() {
@@ -844,4 +918,4 @@ function currencyChanged() {
 }
 
 // Call initialize() function when the page loads
-initialize();
+window.onload = initialize();
