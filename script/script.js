@@ -831,6 +831,9 @@ function addToCart() {
 	createCartTotals();
 }
 
+function removeFromCart() {}
+
+// Function that is called when the currency is changed
 function currencyChanged() {
 	// Call the function to handle flag
 	changeFlag();
