@@ -628,7 +628,6 @@ function displayCartItems() {
 					case 3:
 						// Calculate subtotal
 						let subtotal = currentPrice * currItem.quantity;
-						console.log(subtotal);
 						if (currency.value === 'USD') {
 							cellText = document.createTextNode('$' + subtotal.toFixed(2) + '(USD)');
 							cell.appendChild(cellText);
@@ -726,9 +725,8 @@ function changeQtyDropdown() {
 
 		// Determine the maximum quantity that can be selected
 		const maxNumber = Math.min(maxPerCustomer, quantityOnHand);
-
 		// Validate maxNumber
-		if (maxNumber > 1) {
+		if (maxNumber >= 1) {
 			// Get Dropdown Element
 			let dropDown = document.getElementById('addItemQty');
 
@@ -768,6 +766,8 @@ function changeQtyDropdown() {
 function addToCart() {
 	// Get ID of selected item
 	const selectedItem = document.getElementById('addItemId').value;
+	// Get quantity of item selected
+	const qtySelected = document.getElementById('addItemQty').value;
 
 	// Find the selected item object in the storeItemArr
 	let selectedStoreItemObject = storeItemArr.find((item) => item.id === selectedItem);
@@ -783,8 +783,11 @@ function addToCart() {
 		// Clear the validation message if the item ID is valid
 		document.getElementById('addIDValidationMessage').innerHTML = '';
 
+		// Find the selected item object in the cartItemArr
+		let selectedCartItemObject = cartItemArr.find((item) => item.id === selectedItem);
+
 		// if the selected item is not already in the cart
-		if (!cartItemArr.find((item) => item.id === selectedItem)) {
+		if (!selectedCartItemObject) {
 			// Create a new cart item object using selected item details
 			const newCartItem = new cartItem(
 				selectedStoreItemObject.id,
@@ -795,13 +798,35 @@ function addToCart() {
 
 			// Add the new cart item to the cartItemArr
 			cartItemArr.push(newCartItem);
+
+			// Deduct the selected quantity of the item from its quantity on hand
+			selectedStoreItemObject.quantityOnHand -= qtySelected;
 		}
-		// if the selected item is already in the cart
+		// If the selected item is already in the cart
 		else {
+			// If the sum of the existing quantity in the cart and the newly selected quantity exceeds the maximum allowed per customer
+			if (selectedCartItemObject.quantity + qtySelected > selectedStoreItemObject.maxPerCustomer) {
+				// Adjust the inventory by subtracting the difference between the max allowed quantity
+				// and the current quantity in the cart from the quantity on hand.
+				selectedStoreItemObject.quantityOnHand -=
+					selectedStoreItemObject.maxPerCustomer - selectedCartItemObject.quantity;
+
+				// Adjust the cart item's quantity to the maximum quantity allowed per customer
+				selectedCartItemObject.quantity = selectedStoreItemObject.maxPerCustomer;
+			}
+			// If adding the selected quantity to the cart does not exceed the max per customer
+			else {
+				// Simply add the selected quantity to the existing quantity in the cart for the item
+				selectedCartItemObject.quantity += qtySelected;
+
+				// And reduce the quantity on hand in the inventory by the amount just added to the cart
+				selectedStoreItemObject.quantityOnHand -= qtySelected;
+			}
 		}
 	}
 
 	// Call the functions for displaying cart items and calculation cart pricing
+	displayStoreItems();
 	displayCartItems();
 	createCartTotals();
 }

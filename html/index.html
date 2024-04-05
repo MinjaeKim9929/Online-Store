@@ -56,14 +56,14 @@
 			<legend>Select Items</legend>
 			<p>
 				Item ID:
-				<input type="text" id="addItemId" onchange="changeQtyDropdown()" />
+				<input type="text" id="addItemId" onblur="changeQtyDropdown()" />
 				&nbsp;
 				<span id="addIDValidationMessage" style="color: red"></span>
 			</p>
 			<p>
 				Qty:
 				<select type="number" id="addItemQty" />
-					<option selected>Select Quantity</option>
+					<option selected>- Select Quantity -</option>
 				</select>
 				&nbsp;
 				<span id="addQtyValidationMessage" style="color: red"></span>
