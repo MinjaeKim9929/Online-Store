@@ -79,13 +79,17 @@
 		<fieldset>
 			<legend>Your Cart</legend>
 			<div id="cartItemDisplayDiv"></div>
-			<br />
 			<div id="cartCheckout"></div>
 		</fieldset>
 		<br />
 		<fieldset>
 			<legend>Review an Item</legend>
-			<p>Product ID: <input type="text" id="reviewId" />&nbsp;&nbsp;&nbsp;<span id="reviewIdMsg"></span></p>
+			<p>
+				Product ID: <input type="text" id="reviewId" />&nbsp;&nbsp;&nbsp;<span
+					id="reviewIdMsg"
+					style="color: red"
+				></span>
+			</p>
 			<p>Review: <input type="text" id="reviewDesc" size="100" /></p>
 			<p>
 				Rating:
@@ -96,7 +100,7 @@
 					<option value="3">3</option>
 					<option value="4">4</option>
 					<option value="5">5</option></select
-				>&nbsp;&nbsp;&nbsp;<span id="addRatingValidationMessage"></span>
+				>&nbsp;&nbsp;&nbsp;<span id="addRatingValidationMessage" style="color: red"></span>
 			</p>
 			<p><input type="button" value="Review" onclick="addReviewItem()" /></p>
 		</fieldset>

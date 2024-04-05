@@ -542,6 +542,7 @@ function displayCartItems() {
 		cartItemDisplayTbl.appendChild(tblBody);
 		cartItemDisplayDiv.appendChild(cartItemDisplayTbl);
 	}
+	createCartTotals();
 }
 
 // Calculate and display the totals for the order in the cart
@@ -557,10 +558,10 @@ function createCartTotals() {
 		let currItem = cartItemArr[i];
 
 		// Calculate subtotal for the current item by multiplying its prize by quantity
-		itemSubtotal += currItem.priceCA * currItem.quantity;
+		itemSubtotal += convertPrice(currItem.priceCA) * currItem.quantity;
 
 		// Accumulate shipping cost for the current item
-		estimatedShipping += currItem.shippingCost;
+		estimatedShipping += convertPrice(currItem.shippingCost);
 	}
 	// Calculate subtotal by adding itemSubtotal and estimatedShipping
 	let subtotal = itemSubtotal + estimatedShipping;
@@ -572,11 +573,11 @@ function createCartTotals() {
 	let orderTotal = subtotal + estimatedTax;
 
 	// Generate HTML output to display subtotal, estimated shipping, estimated tax, and order total
-	let output = `<hr>Items Subtotal: $${itemSubtotal.toFixed(2)}<br>Estimated Shipping: $${estimatedShipping.toFixed(
-		2
-	)}<br><br>Subtotal: $${subtotal.toFixed(2)}<br>Estimated Tax: $${estimatedTax.toFixed(
-		2
-	)}<br>Order Total: $${orderTotal.toFixed(2)}`;
+	let output = `<br><hr>Items Subtotal: ${expressPrice(itemSubtotal)}<br>Estimated Shipping: ${expressPrice(
+		estimatedShipping
+	)}<br><br>Subtotal: ${expressPrice(subtotal)}<br>Estimated Tax (13%): ${expressPrice(
+		estimatedTax
+	)}<br>Order Total: ${expressPrice(orderTotal)}<br>`;
 
 	// Append the output to cart item display div
 	document.getElementById('cartItemDisplayDiv').innerHTML += output;
@@ -652,8 +653,14 @@ function changeQtyDropdown() {
 
 // Add item to cart
 function addToCart() {
+	let selectedItem = document.getElementById('addItemId').value;
+	let qtySelected = parseInt(document.getElementById('addItemQty').value);
 	// Find the selected item object in the storeItemArr
 	let selectedStoreItemObject = storeItemArr.find((item) => item.id === selectedItem);
+
+	// Reset input fields validation messages
+	document.getElementById('addQtyValidationMessage').innerHTML = ``;
+	document.getElementById('addIDValidationMessage').innerHTML = '';
 
 	// if the selected item does not exist in the storeItemArr
 	if (!selectedStoreItemObject) {
@@ -662,10 +669,15 @@ function addToCart() {
 			'addIDValidationMessage'
 		).innerHTML = `Item with the ID "${selectedItem}" does not exist. Please enter a valid item ID.`;
 	}
+	// if quantity is not valid
+	else if (isNaN(qtySelected)) {
+		document.getElementById('addQtyValidationMessage').innerHTML = `Please enter a valid quantity.`;
+	}
 	// if the selected item exists in the storeItemArr
 	else {
 		// Clear the validation message if the item ID is valid
 		document.getElementById('addIDValidationMessage').innerHTML = '';
+		document.getElementById('addQtyValidationMessage').innerHTML = '';
 
 		// Find the selected item object in the cartItemArr
 		let selectedCartItemObject = cartItemArr.find((item) => item.id === selectedItem);
@@ -689,7 +701,7 @@ function addToCart() {
 		// If the selected item is already in the cart
 		else {
 			// If the sum of the existing quantity in the cart and the newly selected quantity exceeds the maximum allowed per customer
-			if (selectedCartItemObject.quantity + qtySelected > selectedStoreItemObject.maxPerCustomer) {
+			if (parseInt(selectedCartItemObject.quantity) + qtySelected > selectedStoreItemObject.maxPerCustomer) {
 				// Adjust the inventory by subtracting the difference between the max allowed quantity
 				// and the current quantity in the cart from the quantity on hand.
 				selectedStoreItemObject.quantityOnHand -=
@@ -697,6 +709,10 @@ function addToCart() {
 
 				// Adjust the cart item's quantity to the maximum quantity allowed per customer
 				selectedCartItemObject.quantity = selectedStoreItemObject.maxPerCustomer;
+
+				document.getElementById(
+					'addQtyValidationMessage'
+				).innerHTML = `The total quantity exceeds the maximum quantity allowed per customer, so the quantity is limited to the maximum quantity`;
 			}
 			// If adding the selected quantity to the cart does not exceed the max per customer
 			else {
@@ -712,7 +728,21 @@ function addToCart() {
 	// Call the functions for displaying store/cart items and calculation cart pricing
 	displayStoreItems();
 	displayCartItems();
-	createCartTotals();
+
+	// Reset the item ID input field and quantity select dropdown after adding to cart
+	document.getElementById('addItemId').value = '';
+	resetQtyDropdown();
+}
+
+// Function to reset quantity select dropdown to default state
+function resetQtyDropdown() {
+	let dropDown = document.getElementById('addItemQty');
+	// Empty Dropdown
+	dropDown.innerHTML = '';
+	let tempElement = document.createElement('option');
+	tempElement.innerHTML = '- Select Quantity -';
+	tempElement.value = '';
+	dropDown.appendChild(tempElement);
 }
 
 // Remove item from the cart
@@ -721,6 +751,9 @@ function removeFromCart() {
 	const selectedItem = document.getElementById('addItemId').value;
 	// Get quantity of item selected
 	const qtySelected = document.getElementById('addItemQty').value;
+
+	document.getElementById('addQtyValidationMessage').innerHTML = ``;
+	document.getElementById('addIDValidationMessage').innerHTML = '';
 
 	// Find the selected item object in the cartItemArr
 	let selectedCartItemObject = cartItemArr.find((item) => item.id === selectedItem);
@@ -757,12 +790,19 @@ function removeFromCart() {
 	displayStoreItems();
 	displayCartItems();
 	createCartTotals();
+
+	// Reset the item ID input field and quantity select dropdown after adding to cart
+	document.getElementById('addItemId').value = '';
+	resetQtyDropdown();
 }
 
 // Review Item
 function addReviewItem() {
 	// Get ID of selected item
 	const selectedItem = document.getElementById('reviewId').value;
+
+	document.getElementById('reviewIdMsg').innerHTML = '';
+	document.getElementById('addRatingValidationMessage').innerHTML = '';
 
 	// Find the selected item object in the storeItemArr
 	let selectedStoreItemObject = storeItemArr.find((item) => item.id === selectedItem);
@@ -779,7 +819,6 @@ function addReviewItem() {
 		document.getElementById('reviewIdMsg').innerHTML = ``;
 		const review = document.getElementById('reviewDesc').value;
 		const rating = document.getElementById('reviewNum').value;
-		console.log(typeof rating);
 		if (rating === '') {
 			document.getElementById('addRatingValidationMessage').innerHTML = 'Please select a rating between 1 and 5.';
 		} else {
@@ -787,7 +826,12 @@ function addReviewItem() {
 			const newReview = new reviewItem(review, rating);
 			selectedStoreItemObject.reviews.push(newReview);
 		}
+		alert(`Thank you for your review of the ${selectedStoreItemObject.name}`);
 	}
+
+	document.getElementById('reviewId').value = '';
+	document.getElementById('reviewDesc').value = '';
+	document.getElementById('reviewNum').selectedIndex = 0;
 }
 
 // Function that is called when the currency is changed
@@ -830,7 +874,7 @@ function displayItemDetails() {
 			let sumRating = 0;
 			for (let i = 1; i <= selectedStoreItemObject.reviews.length; i++) {
 				let currReview = selectedStoreItemObject.reviews[i - 1];
-				sumRating += currReview.rating;
+				sumRating += parseInt(currReview.rating);
 				message += `Review ${i}: ${currReview.review}\n`;
 			}
 			let averageRating = sumRating / selectedStoreItemObject.reviews.length;
@@ -839,6 +883,10 @@ function displayItemDetails() {
 		}
 		alert(message);
 	}
+
+	// Reset the item ID input field and quantity select dropdown after adding to cart
+	document.getElementById('addItemId').value = '';
+	resetQtyDropdown();
 }
 
 function convertPrice(price) {
@@ -863,56 +911,6 @@ function expressPrice(price) {
 	} else {
 		return `₩${(Math.ceil(price / 100) * 100).toLocaleString()} (KRW)`;
 	}
-}
-
-function validateSelectItems() {
-	const itemID = document.getElementById('addItemId').value;
-	const quantity = document.getElementById('addItemQty').value;
-	const IDValidationMsg = document.getElementById('addIDValidationMessage');
-	const qtyValidationMsg = document.getElementById('addQtyValidationMessage');
-
-	// Reset validation messages
-	IDValidationMsg.innerHTML = '';
-	qtyValidationMsg.innerHTML = '';
-
-	// Check if the item exists
-	if (!storeItemArr.find((item) => item.id === itemID)) {
-		IDValidationMsg.innerHTML = `Item with the ID "${itemID}" does not exist. Please enter a valid item ID.`;
-		return false; // Return false to indicate validation failed
-	}
-
-	// Check if quantity is valid
-	if (!Number.isInteger(quantity) || quantity <= 0) {
-		qtyValidationMsg.innerHTML = 'Please enter a valid quantity.';
-		return false;
-	}
-
-	return true;
-}
-
-function validateCartItems() {
-	const itemID = document.getElementById('reviewId').value;
-	const rating = document.getElementById('reviewNum').value;
-	const IDValidationMsg = document.getElementById('reviewIdMsg');
-	const ratingValidationMsg = document.getElementById('addRatingValidationMessage');
-
-	// Reset validation messages
-	IDValidationMsg.innerHTML = '';
-	ratingValidationMsg.innerHTML = '';
-
-	// Check if the item exists
-	if (!cartItemArr.find((item) => item.id === itemID)) {
-		IDValidationMsg.innerHTML = `Item with the ID "${itemID}" does not exist in the cart. Please enter a valid item ID.`;
-		return false; // Return false to indicate validation failed
-	}
-
-	// Check if quantity is valid
-	if (rating === 0) {
-		ratingValidationMsg.innerHTML = 'Please enter a valid rating. (1 ~ 5)';
-		return false;
-	}
-
-	return true;
 }
 
 // Call initialize() function when the page loads
