@@ -866,7 +866,6 @@ function displayItemDetails() {
 
 	// Find the selected item object in the storeItemArr
 	let selectedStoreItemObject = storeItemArr.find((item) => item.id === selectedItem);
-	let price = selectedStoreItemObject.priceCA;
 
 	if (!selectedStoreItemObject) {
 		// Display validation message if the item ID is not valid
@@ -875,7 +874,25 @@ function displayItemDetails() {
 		).innerHTML = `Item with the ID "${selectedItem}" does not exist. Please enter a valid item ID.`;
 	} else {
 		document.getElementById('addIDValidationMessage').innerHTML = '';
-		let message = `Item Details\nID: ${selectedStoreItemObject.id}\nName: ${selectedStoreItemObject.name}\nPrice: $`;
+		let message = `Item Details\nID: ${selectedStoreItemObject.id}\nName: ${
+			selectedStoreItemObject.name
+		}\nPrice: ${expressPrice(convertPrice(selectedStoreItemObject.priceCA))}\nQuantity on hand: ${
+			selectedStoreItemObject.quantityOnHand
+		}\nMaximum per customer: ${selectedStoreItemObject.maxPerCustomer}\nCategory: ${
+			selectedStoreItemObject.category
+		}\nShipping Cost: ${expressPrice(convertPrice(selectedStoreItemObject.shippingCost))}\n\nDescription: \n${
+			selectedStoreItemObject.description
+		}\n\nReviews\n`;
+
+		let sumRating = 0;
+		for (let i = 1; i <= selectedStoreItemObject.reviews.length; i++) {
+			let currReview = selectedStoreItemObject.reviews[i - 1];
+			sumRating += currReview.rating;
+			message += `Review ${i}: ${currReview.review}\n`;
+		}
+		sumRating /= selectedStoreItemObject.reviews.length;
+		message += `\nAverage Rating: ${sumRating.toFixed(1)}`;
+		alert(message);
 	}
 }
 
