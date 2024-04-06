@@ -789,7 +789,6 @@ function removeFromCart() {
 	// Call the functions for displaying store/cart items and calculation cart pricing
 	displayStoreItems();
 	displayCartItems();
-	createCartTotals();
 
 	// Reset the item ID input field and quantity select dropdown after adding to cart
 	document.getElementById('addItemId').value = '';
